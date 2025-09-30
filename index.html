@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head> <meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
-<meta charset="UTF-8"> <meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
+<head> 
+<meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
+<meta charset="UTF-8"> 
 <title>דּף הַבַּיִת</title>
 <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg" type="image/svg+xml">
 <meta name="description" content="דף הבית הנח ביותר, עם קישורים שימושיים, חדשות ופנאי, תפריט צד ימין, חיפוש בגוגל, ותוכן עדכני. אתר נגיש ונוח לגלישה.">
@@ -18,8 +19,6 @@
 <meta name="twitter:title" content="דּף הַבַּיִת">
 <meta name="twitter:description" content="דף הבית הנח ביותר, עם קישורים שימושיים, חדשות ופנאי, תפריט צד ימין, חיפוש בגוגל ותוכן עדכני.">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg">
-<meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" /> 
-
 <style>
 body {font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding:0 20px 20px;direction:rtl;min-height:100vh;color:#333;}
 .side-menu{position:fixed;top:0;right:0;width:80px;height:100vh;background:#fff;box-shadow:-2px 0 10px rgba(0,0,0,0.15);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px 0;z-index:20;}
@@ -62,7 +61,7 @@ body {font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;paddin
 .history-item{background:rgba(255,255,255,.7);padding:10px 15px;border-radius:8px;border-bottom:1px solid #ddd;display:flex;align-items:center;gap:10px;}
 .history-item img{width:24px;height:24px;border-radius:4px;object-fit:cover;}
 .history-item a{color:#0078d7;text-decoration:none;font-weight:600;}
-.extras-container{display:flex;gap:15px;height:70vh;}
+.extras-container{display:flex;gap:15px;height:76vh;}
 .frame{flex:1;margin:0;border-radius:15px;overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,0.2);background:#fff;}
 .frame iframe{width:100%;height:100%;border:none;}
 @media(max-width:900px){.cards-grid{grid-template-columns:repeat(auto-fill,minmax(60px,1fr));}.card img{width:30px;height:30px;}.extras-container{flex-direction:column;height:auto;}}
@@ -76,6 +75,7 @@ body {font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;paddin
     <button onclick="showPage('sites')"><img src="https://cdn-icons-png.flaticon.com/128/900/900782.png"><span>אתרים</span></button>
     <button onclick="showPage('extras')"><img src="https://cdn-icons-png.flaticon.com/128/2995/2995035.png"><span>מוזיקה לייב</span></button>
     <button onclick="showPage('historyPage')"><img src="https://cdn-icons-png.flaticon.com/128/833/833602.png"><span>היסטוריה</span></button>
+    <button onclick="showPage('news')"><img src="https://cdn-icons-png.flaticon.com/128/81/81460.png"><span>חדשות</span></button>
   </div>
   <div class="bottom-button">
     <button id="editBtn" onclick="toggleEdit()"><img src="https://cdn-icons-png.flaticon.com/128/1159/1159633.png"><span>עריכה</span></button>
@@ -127,6 +127,16 @@ body {font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;paddin
 </div>
 
 <div id="historyPage" class="page"><div class="column" id="recentColumn"></div></div>
+
+<div id="news" class="page">
+  <div class="category-box">
+    <h3>חדשות</h3>
+    <div class="extras-container">
+      <div class="frame"><iframe src="https://www.emess.co.il/online?native"></iframe></div>
+      <div class="frame"><iframe src="https://www.jdn.co.il/"></iframe></div>
+    </div>
+  </div>
+</div>
 
 <script>
 const defaultData={useful:[{name:"Google",url:"https://www.google.com",icon:"https://www.google.com/favicon.ico"},{name:"YouTube",url:"https://www.youtube.com",icon:"https://www.youtube.com/favicon.ico"}],fun:[{name:"Netflix",url:"https://www.netflix.com",icon:"https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.png"},{name:"Twitch",url:"https://twitch.tv",icon:"https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png"}],recent:[]};
