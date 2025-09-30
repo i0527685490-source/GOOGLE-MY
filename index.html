@@ -18,8 +18,8 @@
 <meta name="twitter:title" content="דּף הַבַּיִת">
 <meta name="twitter:description" content="דף הבית הנח ביותר, עם קישורים שימושיים, חדשות ופנאי, תפריט צד ימין, חיפוש בגוגל ותוכן עדכני.">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg">
-<meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
-  
+<meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" /> 
+
 <style>
 body {font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding:0 20px 20px;direction:rtl;min-height:100vh;color:#333;}
 .side-menu{position:fixed;top:0;right:0;width:80px;height:100vh;background:#fff;box-shadow:-2px 0 10px rgba(0,0,0,0.15);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px 0;z-index:20;}
@@ -27,23 +27,19 @@ body {font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;paddin
 .side-menu button{background:none;border:none;display:flex;flex-direction:column;align-items:center;cursor:pointer;font-size:.7em;color:#333;transition:.15s;}
 .side-menu button img{width:30px;height:30px;margin-bottom:5px;}
 .side-menu button:hover{transform:translateY(-2px);color:#0078d7;}
-/* ---- כאן ניתן לשנות את המרחק מהתחתית ---- */
 .side-menu .bottom-button{
   display:flex;
   flex-direction:column;
   gap:15px;
   align-items:center;
   position:absolute;
-  bottom:35px; /* ← מרחק מהתחתית, ניתן לשנות כאן */
+  bottom:35px;
 }
-/* ------------------------------------------- */
 .actions{position:fixed;top:12px;right:100px;display:flex;gap:10px;z-index:15;}
 .actions button{padding:8px 12px;border:none;border-radius:8px;cursor:pointer;font-size:.9em;transition:.15s;box-shadow:0 2px 5px rgba(0,0,0,0.15);font-weight:bold;}
-.edit-btn{background:#0078d7;color:#fff;}
-.edit-btn:hover{background:#005fa3;transform:translateY(-2px);}
-.save-btn{background:#28a745;color:#fff;display:none;}
+.save-btn{background:#28a745;color:#fff;visibility:hidden;}
 .save-btn:hover{background:#1e7e34;transform:translateY(-2px);}
-.cancel-btn{background:#dc3545;color:#fff;display:none;}
+.cancel-btn{background:#dc3545;color:#fff;visibility:hidden;}
 .cancel-btn:hover{background:#a71d2a;transform:translateY(-2px);}
 .search-container{display:flex;justify-content:center;position:fixed;top:12px;left:0;width:100%;z-index:10;}
 .search-box{display:flex;align-items:center;background:#fff;border-radius:50px;padding:5px 15px;width:500px;max-width:90%;box-shadow:0 3px 10px rgba(0,0,0,0.15);}
@@ -74,7 +70,6 @@ body {font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;paddin
 </head>
 <body>
 
-<!-- תפריט צד ימין -->
 <div class="side-menu">
   <div class="top-buttons">
     <button onclick="showPage('home')"><img src="https://cdn-icons-png.flaticon.com/128/263/263115.png"><span>בית</span></button>
@@ -83,12 +78,11 @@ body {font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;paddin
     <button onclick="showPage('historyPage')"><img src="https://cdn-icons-png.flaticon.com/128/833/833602.png"><span>היסטוריה</span></button>
   </div>
   <div class="bottom-button">
-    <button onclick="toggleEdit()"><img src="https://cdn-icons-png.flaticon.com/128/1159/1159633.png"><span>עריכה</span></button>
+    <button id="editBtn" onclick="toggleEdit()"><img src="https://cdn-icons-png.flaticon.com/128/1159/1159633.png"><span>עריכה</span></button>
     <button onclick="changeBackground()"><img src="https://cdn-icons-png.flaticon.com/128/3342/3342137.png"><span>רקע</span></button>
   </div>
 </div>
 
-<!-- כפתורי שמירה וביטול במצב עריכה -->
 <div class="actions">
   <button class="save-btn" onclick="saveData()">💾 שמירה</button>
   <button class="cancel-btn" onclick="cancelEdit()">❌ ביטול</button>
@@ -101,7 +95,6 @@ body {font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;paddin
   </div>
 </div>
 
-<!-- דפי תוכן -->
 <div id="home" class="page">
   <div class="category-box">
     <h3>האתר בתהלכי פיתוח. דף זה אינו זמין כרגע. בעז"ה יהיה זמין בקרוב.</h3>
@@ -177,7 +170,12 @@ function renderHistory(){
 function render(){renderCards("useful","usefulColumn");renderCards("fun","funColumn");renderHistory();document.querySelectorAll(".add-btn").forEach(btn=>btn.style.display=editMode?"block":"none");}
 function addRecent(section,index){const site={...data[section][index]};site.time=new Date().toLocaleString("he-IL");data.recent=data.recent.filter(s=>s.url!==site.url);data.recent.unshift(site);data.recent=data.recent.slice(0,40);localStorage.setItem("shortcuts",JSON.stringify(data));renderHistory();}
 function showPage(pageId){document.querySelectorAll(".page").forEach(p=>p.style.display="none");document.getElementById(pageId).style.display="block";}
-function toggleEdit(){editMode=!editMode;document.querySelector(".edit-btn").style.display=editMode?"none":"inline-block";document.querySelector(".save-btn").style.display=editMode?"inline-block":"none";document.querySelector(".cancel-btn").style.display=editMode?"inline-block":"none";render();}
+function toggleEdit(){
+  editMode=!editMode;
+  document.querySelector(".save-btn").style.visibility = editMode ? "visible" : "hidden";
+  document.querySelector(".cancel-btn").style.visibility = editMode ? "visible" : "hidden";
+  render();
+}
 function saveData(){["useful","fun"].forEach(section=>{const col=document.getElementById(section==="useful"?"usefulColumn":"funColumn");col.querySelectorAll(".card").forEach((card,index)=>{if(editMode){const inputs=card.querySelectorAll("input");if(inputs.length===3){data[section][index].name=inputs[0].value.trim()||"שם חדש";data[section][index].url=inputs[1].value.trim()||"https://";data[section][index].icon=inputs[2].value.trim()||"https://via.placeholder.com/32";}}});});localStorage.setItem("shortcuts",JSON.stringify(data));toggleEdit();}
 function cancelEdit(){data=JSON.parse(localStorage.getItem("shortcuts"))||defaultData;toggleEdit();}
 function addSite(section){data[section].push({name:"שם חדש",url:"https://",icon:"https://via.placeholder.com/32"});render();}
