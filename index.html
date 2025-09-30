@@ -20,6 +20,7 @@
 <meta name="twitter:description" content="דף הבית הנח ביותר, עם קישורים שימושיים, חדשות ופנאי, תפריט צד ימין, חיפוש בגוגל ותוכן עדכני.">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg">
 <style>
+/* --- כל סגנונות CSS כפי שנשלחו קודם --- */
 body {font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding:0 20px 20px;direction:rtl;min-height:100vh;color:#333;}
 .side-menu{position:fixed;top:0;right:0;width:80px;height:100vh;background:#fff;box-shadow:-2px 0 10px rgba(0,0,0,0.15);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px 0;z-index:20;}
 .side-menu .top-buttons,.side-menu .bottom-button{display:flex;flex-direction:column;gap:15px;}
@@ -140,10 +141,48 @@ body {font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;paddin
 </div>
 
 <script>
-const defaultData={useful:[{name:"Google",url:"https://www.google.com",icon:"https://www.google.com/favicon.ico"},{name:"YouTube",url:"https://www.youtube.com",icon:"https://www.youtube.com/favicon.ico"}],fun:[{name:"Netflix",url:"https://www.netflix.com",icon:"https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.png"},{name:"Twitch",url:"https://twitch.tv",icon:"https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png"}],recent:[]};
-let data=JSON.parse(localStorage.getItem("shortcuts"))||defaultData,editMode=false;
-const savedBackground=localStorage.getItem("backgroundURL");if(savedBackground)document.body.style.background=`url('${savedBackground}') center/cover no-repeat`;
+const defaultData = {
+  useful: [
+    {name:"חשבון", url:"https://myaccount.google.com/?utm_source=OGB&utm_medium=app&authuser=0", icon:"https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"},
+    {name:"מייל", url:"https://mail.google.com/mail/?authuser=0", icon:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/1280px-Gmail_icon_%282020%29.svg.png"},
+    {name:"קנווה", url:"https://www.canva.com/", icon:"https://1000logos.net/wp-content/uploads/2020/03/Canva-icon.png"},
+    {name:"צ'אט GPT", url:"https://chatgpt.com/", icon:"https://img.icons8.com/?size=1200&id=UVkvulvTjpo1&format=png"},
+    {name:"הומפיוטר", url:"https://i0527685490-source.github.io/homputer1/", icon:"https://github.com/i0527685490-source/homputer1/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true"},
+    {name:"גיטהאב", url:"https://github.com/", icon:"https://upload.wikimedia.org/wikipedia/commons/d/d7/GitHub_font_awesome.svg"},
+    {name:"elevenlabs", url:"https://elevenlabs.io/app/speech-synthesis/text-to-speech", icon:"https://img.icons8.com/?size=1200&id=kQSS04V7DmPz&format=png"},
+    {name:"aliexpres", url:"https://www.aliexpress.com/", icon:"https://israelaliexpress.co.il/wp-content/uploads/2024/09/aliexpress_logo_icon_167892.webp"},
+    {name:"דרייב", url:"https://drive.google.com/?authuser=0", icon:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/2295px-Google_Drive_icon_%282020%29.svg.png"},
+    {name:"תרגום", url:"https://translate.google.com/?authuser=0", icon:"https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png"},
+    {name:"צ'אט ג'מיני", url:"https://gemini.google.com/?utm_source=app_launcher&utm_medium=owned&utm_campaign=base_all&authuser=0", icon:"https://images.seeklogo.com/logo-png/62/2/google-gemini-icon-logo-png_seeklogo-623016.png"},
+    {name:"הפניות", url:"https://netfree.link/app/#/tickets/list", icon:"https://netfree.link/img/logo/icon.svg"},
+    {name:"מוביט", url:"https://moovitapp.com/", icon:"https://iconape.com/wp-content/files/yr/291542/svg/moovit-seeklogo.com.svg"},
+    {name:"מפות גוגל", url:"https://maps.google.com/?authuser=0", icon:"https://upload.wikimedia.org/wikipedia/commons/a/aa/Google_Maps_icon_%282020%29.svg"},
+    {name:"קונסול", url:"https://search.google.com/search-console?resource_id=https%3A%2F%2Fi0527685490-source.github.io%2Fhomputer1%2F", icon:"https://cdn.worldvectorlogo.com/logos/search-console-icon-2025-1.svg"},
+    {name:"אייקונים", url:"https://cdn-icons-png.flaticon.com/128/14649/14649052.png", icon:"https://cdn-icons-png.flaticon.com/128/14649/14649052.png"}
+  ],
+  fun: [
+    {name:"הגיזרה", url:"https://hagizra.news/", icon:"https://s3.prog.co.il/data/xfmg/thumbnail/151/151632-9c7f4a5172f4fb5a85edf25dd557eefe.jpg?1722841266"},
+    {name:"אמס", url:"https://www.emess.co.il/", icon:"https://play-lh.googleusercontent.com/WbzfkVRMPDSV29AXTCSWG9FrnVkbaFDrni_zEPp4XCIg7hga3dk7KepSlph8nAGviBfk=w240-h480-rw"},
+    {name:"JDN", url:"https://jdn.co.il/", icon:"https://play-lh.googleusercontent.com/ku2XSc8xK5VBEYCHCfA9sncTxezdR24W_A36AANZPHQrXoKQ24rxDwCc8Bdw5lMHBYmk"},
+    {name:"החתול השחור", url:"https://black-cat.thechats.click/", icon:"https://black-cat.thechats.click/api/files/a2d59300d00906d247b5f04909f9a39d28e98ffc"},
+    {name:"פרוג", url:"https://www.prog.co.il/", icon:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAZCAMAAAAVHr4VAAAAMFBMVEVHcEy3zgK3zgK3zgK3zgK3zgK2zgG3zgK3zgK3zgK3zgK3zgK3zgK3zgG3zgK3zgI2G9aeAAAAD3RSTlMAs+7igSgSx2JHc5YzG9ckgzpOAAAAqUlEQVQokaWRyxbDIAhEwfjWxP//2wo2YqndpLPjXMBhBPhLp2lKxt/MaURyg/kda23MHnt4EMuzRJ8sSmvuUHotL8JZAySBiaFZ6qItSF3gorctGl7TVQUG3lL42rFV/HW/BOOSVhXDhq90Ok8fCF7s/DttHkawNI82fk6/Uzjn+yaUWGGx3E8LKtPe4vK45MeHkU7aYfdsJL1EvQhvbxuK4jxqtmb2RC9sahaJQhwAwQAAAABJRU5ErkJggg=="},
+    {name:"רץ בוואטסאפ", url:"https://www.tv2000.co.il/%D7%A8%D7%A5-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4", icon:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/%D7%A2%D7%A8%D7%95%D7%A5_2000.png/250px-%D7%A2%D7%A8%D7%95%D7%A5_2000.png"},
+    {name:"מיוזיק סקופ - יוטיוב", url:"https://www.youtube.com/@%D7%9E%D7%99%D7%95%D7%96%D7%99%D7%A7%D7%A1%D7%A7%D7%95%D7%A4/featured", icon:"https://www.hngn.co.il/static/media/musicScoop.2f587aff2142732d5ca0.jpg"},
+    {name:"הורדה מיוטיוב", url:"https://ketertorah.co.il/%D7%94%D7%95%D7%A8%D7%93%D7%94-%D7%9E%D7%94%D7%99%D7%A8%D7%94-%D7%9E%D7%99%D7%95%D7%98%D7%99%D7%95%D7%91/Opoj3Qyn9Zo", icon:"https://ketertorah.co.il/%D7%97%D7%93%D7%A9/%D7%90%D7%99%D7%99%D7%A7%D7%95%D7%9F%20%D7%9B%D7%AA%D7%A8%20%D7%AA%D7%95%D7%A8%D7%94%20%D7%92.png"},
+    {name:"היכל הנגינה", url:"https://netfree.link/api/favicon/www.hngn.co.il", icon:"https://www.hngn.co.il/static/media/logo.64caba26d9cb06269eb3.png"},
+    {name:"מתמחים טופ", url:"https://mitmachim.top/", icon:"https://play-lh.googleusercontent.com/GYvIesmegDisgbA4NFWP5keBeAtiqFWTljPAenIxzExzSUZhIcFM_uLGqZwscbh9j3M"},
+    {name:"שיר חדש - פרוג", url:"https://www.prog.co.il/threads/%D7%94%D7%A1%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%9D-%D7%95%D7%94%D7%A7%D7%9C%D7%99%D7%A4%D7%99%D7%9D-%D7%94%D7%97%D7%93%D7%A9%D7%99%D7%9D.387726/page-1294", icon:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAZCAMAAAAVHr4VAAAAMFBMVEVHcEy3zgK3zgK3zgK3zgK3zgK2zgG3zgK3zgK3zgK3zgK3zgK3zgK3zgG3zgK3zgI2G9aeAAAAD3RSTlMAs+7igSgSx2JHc5YzG9ckgzpOAAAAqUlEQVQokaWRyxbDIAhEwfjWxP//2wo2YqndpLPjXMBhBPhLp2lKxt/MaURyg/kda23MHnt4EMuzRJ8sSmvuUHotL8JZAySBiaFZ6qItSF3gorctGl7TVQUG3lL42rFV/HW/BOOSVhXDhq90Ok8fCF7s/DttHkawNI82fk6/Uzjn+yaUWGGx3E8LKtPe4vK45MeHkU7aYfdsJL1EvQhvbxuK4jxqtmb2RC9sahaJQhwAwQAAAABJRU5ErkJggg=="},
+    {name:"חדשות המוזיקה", url:"https://newsmusic.blogspot.com/", icon:"https://www.aasystems-sound.co.il/wp-content/uploads/2019/11/%D7%9E%D7%95%D7%96%D7%99%D7%A7%D7%94-%D7%9C%D7%A2%D7%A1%D7%A7%D7%99%D7%9D.png"}
+  ],
+  recent: []
+};
 
+let data = JSON.parse(localStorage.getItem("shortcuts")) || defaultData;
+let editMode = false;
+const savedBackground = localStorage.getItem("backgroundURL");
+if(savedBackground) document.body.style.background=`url('${savedBackground}') center/cover no-repeat`;
+
+/* --- פונקציות JS כפי שנשלחו קודם --- */
 function renderCards(section,columnId){
   const col=document.getElementById(columnId);col.innerHTML="";
   data[section].forEach((site,index)=>{
@@ -185,24 +224,13 @@ function showPage(pageId,btn){
   document.getElementById(pageId).style.display="block";
   document.querySelectorAll(".side-menu .top-buttons button").forEach(b=>b.classList.remove("active"));
   if(btn) btn.classList.add("active");
-  localStorage.setItem("lastPage", pageId); // שמירת הדף האחרון
-  
-  // הצגת כפתור עריכה רק בדף 'sites'
+  localStorage.setItem("lastPage", pageId);
   const editBtn = document.getElementById("editBtn");
-  if(pageId === "sites"){
-    editBtn.style.display = "flex";
-  } else {
-    editBtn.style.display = "none";
-    if(editMode) toggleEdit(); // אם הייתי בעריכה ויצאתי - סוגר עריכה
-  }
+  if(pageId === "sites"){ editBtn.style.display = "flex"; } 
+  else { editBtn.style.display = "none"; if(editMode) toggleEdit(); }
 }
 
-function toggleEdit(){
-  editMode=!editMode;
-  document.querySelector(".save-btn").style.visibility = editMode ? "visible" : "hidden";
-  document.querySelector(".cancel-btn").style.visibility = editMode ? "visible" : "hidden";
-  render();
-}
+function toggleEdit(){editMode=!editMode;document.querySelector(".save-btn").style.visibility=editMode?"visible":"hidden";document.querySelector(".cancel-btn").style.visibility=editMode?"visible":"hidden";render();}
 function saveData(){["useful","fun"].forEach(section=>{const col=document.getElementById(section==="useful"?"usefulColumn":"funColumn");col.querySelectorAll(".card").forEach((card,index)=>{if(editMode){const inputs=card.querySelectorAll("input");if(inputs.length===3){data[section][index].name=inputs[0].value.trim()||"שם חדש";data[section][index].url=inputs[1].value.trim()||"https://";data[section][index].icon=inputs[2].value.trim()||"https://via.placeholder.com/32";}}});});localStorage.setItem("shortcuts",JSON.stringify(data));toggleEdit();}
 function cancelEdit(){data=JSON.parse(localStorage.getItem("shortcuts"))||defaultData;toggleEdit();}
 function addSite(section){data[section].push({name:"שם חדש",url:"https://",icon:"https://via.placeholder.com/32"});render();}
@@ -210,8 +238,7 @@ function searchGoogle(){const query=document.getElementById("searchInput").value
 function changeBackground(){const url=prompt("הכנס כתובת תמונה לרקע:");if(url){document.body.style.background=`url('${url}') center/cover no-repeat`;localStorage.setItem("backgroundURL",url);}}
 document.getElementById("searchInput").addEventListener("keypress",e=>{if(e.key==="Enter")searchGoogle();});
 
-// בדיקה אם יש דף אחרון שמור
-const lastPage = localStorage.getItem("lastPage") || "sites"; // "sites" ברירת מחדל
+const lastPage = localStorage.getItem("lastPage") || "sites";
 const lastBtn = document.querySelector(`.side-menu .top-buttons button[onclick*="${lastPage}"]`);
 render();
 showPage(lastPage, lastBtn);
