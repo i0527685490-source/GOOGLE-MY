@@ -2,8 +2,27 @@
 <html lang="he" dir="rtl">
 <head>  <meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
 <meta charset="UTF-8">  <meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
-<title>דף הבית</title>
+<title>דּף הַבַּיִת</title>
 <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg" type="image/svg+xml">
+
+
+<!-- מטא SEO -->
+  <meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
+<meta name="description" content="דף הבית הנח ביותר, עם קישורים שימושיים, חדשות ופנאי, תפריט צד ימין, חיפוש בגוגל, ותוכן עדכני. אתר נגיש ונוח לגלישה.">
+<meta name="keywords" content="דף הבית, קישורים שימושיים, חדשות, פנאי, חיפוש, נגישות, אתר נח, תפריט צד, אתרי בית">
+<meta name="author" content="דוד הוכמן">
+<meta name="robots" content="index, follow">
+<meta name="google" content="notranslate">
+<meta property="og:title" content="דּף הַבַּיִת">
+<meta property="og:description" content="דף הבית הנח ביותר, עם קישורים שימושיים, חדשות ופנאי, תפריט צד ימין, חיפוש בגוגל ותוכן עדכני.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://your-website-url.com/">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="דּף הַבַּיִת">
+<meta name="twitter:description" content="דף הבית הנח ביותר, עם קישורים שימושיים, חדשות ופנאי, תפריט צד ימין, חיפוש בגוגל ותוכן עדכני.">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg">
+
 <style>
   body {font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding:0 20px 20px;direction:rtl;min-height:100vh;color:#333;}
   .side-menu{position:fixed;top:0;right:0;width:80px;height:100vh;background:#fff;box-shadow:-2px 0 10px rgba(0,0,0,0.15);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px 0;z-index:20;}
@@ -40,7 +59,6 @@
   .history-item{background:rgba(255,255,255,.7);padding:10px 15px;border-radius:8px;border-bottom:1px solid #ddd;display:flex;align-items:center;gap:10px;}
   .history-item img{width:24px;height:24px;border-radius:4px;object-fit:cover;}
   .history-item a{color:#0078d7;text-decoration:none;font-weight:600;}
-  /* עיצוב לחלון נוספים */
   .extras-container{display:flex;gap:15px;height:70vh;}
   .frame{flex:1;margin:0;border-radius:15px;overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,0.2);background:#fff;}
   .frame iframe{width:100%;height:100%;border:none;}
@@ -78,7 +96,7 @@
 <!-- דפי תוכן -->
 <div id="home" class="page">
   <div class="category-box">
-    <h3>ברוכים הבאים</h3>
+    <h3>האתר בתהלכי פיתוח. דף זה אינו זמין כרגע. בעז"ה יהיה זמין בקרוב.</h3>
     <div class="cards-grid"></div>
   </div>
 </div>
@@ -96,14 +114,13 @@
   </div>
 </div>
 
-<!-- כאן נכנס נוספים -->
 <div id="extras" class="page">
   <div class="category-box">
     <h3>נוספים</h3>
     <div class="extras-container">
       <div class="frame"><iframe src="https://www.emess.co.il/live/"></iframe></div>
       <div class="frame"><iframe src="https://www.rlive.co.il/station/kol-barama"></iframe></div>
-   <div class="frame"><iframe src="https://hagizra.news/"></iframe></div>
+      <div class="frame"><iframe src="https://hagizra.news/"></iframe></div>
     </div>
   </div>
 </div>
@@ -111,24 +128,11 @@
 <div id="historyPage" class="page"><div class="column" id="recentColumn"></div></div>
 
 <script>
+// כל הקוד הקיים שלך נשמר כאן, ללא שינוי
 const defaultData={useful:[{name:"Google",url:"https://www.google.com",icon:"https://www.google.com/favicon.ico"},{name:"YouTube",url:"https://www.youtube.com",icon:"https://www.youtube.com/favicon.ico"}],fun:[{name:"Netflix",url:"https://www.netflix.com",icon:"https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.png"},{name:"Twitch",url:"https://twitch.tv",icon:"https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png"}],recent:[]};
 let data=JSON.parse(localStorage.getItem("shortcuts"))||defaultData,editMode=false;
 const savedBackground=localStorage.getItem("backgroundURL");if(savedBackground)document.body.style.background=`url('${savedBackground}') center/cover no-repeat`;
-
-function renderCards(section,columnId){
-  const col=document.getElementById(columnId);col.innerHTML="";
-  data[section].forEach((site,index)=>{
-    const card=document.createElement("div");card.className="card";card.draggable=editMode;card.dataset.index=index;
-    if(editMode){card.classList.add("editing");card.innerHTML=`<input value="${site.name}" placeholder="שם"><input value="${site.url}" placeholder="כתובת"><input value="${site.icon}" placeholder="כתובת אייקון">`;
-      const delBtn=document.createElement("button");delBtn.textContent="מחיקה";delBtn.className="delete-btn";delBtn.onclick=e=>{e.stopPropagation();data[section].splice(index,1);renderCards(section,columnId);};card.appendChild(delBtn);
-      card.addEventListener("dragstart",e=>{e.dataTransfer.setData("text/plain",index);});
-      col.addEventListener("dragover",e=>{e.preventDefault();});
-      col.addEventListener("drop",e=>{e.preventDefault();const fromIndex=e.dataTransfer.getData("text/plain"),toIndex=index;if(fromIndex!==toIndex){const moved=data[section].splice(fromIndex,1)[0];data[section].splice(toIndex,0,moved);renderCards(section,columnId);}});
-    }else{card.onclick=()=>{window.open(site.url,"_blank");addRecent(section,index);};card.innerHTML=`<img src="${site.icon||'https://via.placeholder.com/32'}"><a>${site.name}</a>`;}
-    col.appendChild(card);
-  });
-}
-
+function renderCards(section,columnId){const col=document.getElementById(columnId);col.innerHTML="";data[section].forEach((site,index)=>{const card=document.createElement("div");card.className="card";card.draggable=editMode;card.dataset.index=index;if(editMode){card.classList.add("editing");card.innerHTML=`<input value="${site.name}" placeholder="שם"><input value="${site.url}" placeholder="כתובת"><input value="${site.icon}" placeholder="כתובת אייקון">`;const delBtn=document.createElement("button");delBtn.textContent="מחיקה";delBtn.className="delete-btn";delBtn.onclick=e=>{e.stopPropagation();data[section].splice(index,1);renderCards(section,columnId);};card.appendChild(delBtn);card.addEventListener("dragstart",e=>{e.dataTransfer.setData("text/plain",index);});col.addEventListener("dragover",e=>{e.preventDefault();});col.addEventListener("drop",e=>{e.preventDefault();const fromIndex=e.dataTransfer.getData("text/plain"),toIndex=index;if(fromIndex!==toIndex){const moved=data[section].splice(fromIndex,1)[0];data[section].splice(toIndex,0,moved);renderCards(section,columnId);}});}else{card.onclick=()=>{window.open(site.url,"_blank");addRecent(section,index);};card.innerHTML=`<img src="${site.icon||'https://via.placeholder.com/32'}"><a>${site.name}</a>`;}col.appendChild(card);});}
 function renderHistory(){const col=document.getElementById("recentColumn");col.innerHTML="";data.recent.forEach(site=>{const item=document.createElement("div");item.className="history-item";item.innerHTML=`<img src="${site.icon||'https://via.placeholder.com/24'}"><a href="${site.url}" target="_blank">${site.name}</a><small>${site.time||""}</small>`;col.appendChild(item);});}
 function render(){renderCards("useful","usefulColumn");renderCards("fun","funColumn");renderHistory();document.querySelectorAll(".add-btn").forEach(btn=>btn.style.display=editMode?"block":"none");}
 function addRecent(section,index){const site={...data[section][index]};site.time=new Date().toLocaleString("he-IL");data.recent=data.recent.filter(s=>s.url!==site.url);data.recent.unshift(site);data.recent=data.recent.slice(0,40);localStorage.setItem("shortcuts",JSON.stringify(data));renderHistory();}
