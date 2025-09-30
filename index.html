@@ -199,7 +199,21 @@ function searchGoogle(){const query=document.getElementById("searchInput").value
 function changeBackground(){const url=prompt("הכנס כתובת תמונה לרקע:");if(url){document.body.style.background=`url('${url}') center/cover no-repeat`;localStorage.setItem("backgroundURL",url);}}
 document.getElementById("searchInput").addEventListener("keypress",e=>{if(e.key==="Enter")searchGoogle();});
 
-render();showPage("sites",document.querySelector(".side-menu .top-buttons button:nth-child(2)"));
+// בדיקה אם יש דף אחרון שמור
+const lastPage = localStorage.getItem("lastPage") || "sites"; // "sites" ברירת מחדל
+const lastBtn = document.querySelector(`.side-menu .top-buttons button[onclick*="${lastPage}"]`);
+render();
+showPage(lastPage, lastBtn);
+
+// שמירת הדף האחרון בכל לחיצה על כפתור
+function showPage(pageId, btn){
+  document.querySelectorAll(".page").forEach(p=>p.style.display="none");
+  document.getElementById(pageId).style.display="block";
+  document.querySelectorAll(".side-menu .top-buttons button").forEach(b=>b.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+  localStorage.setItem("lastPage", pageId); // שמירת הדף האחרון
+}
+
 
 </script>
 </body>
