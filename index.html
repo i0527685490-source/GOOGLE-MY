@@ -26,6 +26,7 @@ body {font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;paddin
 .side-menu button{background:none;border:none;display:flex;flex-direction:column;align-items:center;cursor:pointer;font-size:.7em;color:#333;transition:.15s;}
 .side-menu button img{width:30px;height:30px;margin-bottom:5px;}
 .side-menu button:hover{transform:translateY(-2px);color:#0078d7;}
+.side-menu button.active{color:#0078d7;font-weight:bold;}
 .side-menu .bottom-button{
   display:flex;
   flex-direction:column;
@@ -71,11 +72,11 @@ body {font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;paddin
 
 <div class="side-menu">
   <div class="top-buttons">
-    <button onclick="showPage('home')"><img src="https://cdn-icons-png.flaticon.com/128/263/263115.png"><span>בית</span></button>
-    <button onclick="showPage('sites')"><img src="https://cdn-icons-png.flaticon.com/128/900/900782.png"><span>אתרים</span></button>
-    <button onclick="showPage('extras')"><img src="https://cdn-icons-png.flaticon.com/128/2995/2995035.png"><span>מוזיקה לייב</span></button>
-    <button onclick="showPage('historyPage')"><img src="https://cdn-icons-png.flaticon.com/128/833/833602.png"><span>היסטוריה</span></button>
-    <button onclick="showPage('news')"><img src="https://cdn-icons-png.flaticon.com/128/81/81460.png"><span>חדשות</span></button>
+    <button onclick="showPage('home',this)"><img src="https://cdn-icons-png.flaticon.com/128/263/263115.png"><span>בית</span></button>
+    <button onclick="showPage('sites',this)"><img src="https://cdn-icons-png.flaticon.com/128/900/900782.png"><span>אתרים</span></button>
+    <button onclick="showPage('extras',this)"><img src="https://cdn-icons-png.flaticon.com/128/2995/2995035.png"><span>מוזיקה לייב</span></button>
+    <button onclick="showPage('historyPage',this)"><img src="https://cdn-icons-png.flaticon.com/128/833/833602.png"><span>היסטוריה</span></button>
+    <button onclick="showPage('news',this)"><img src="https://cdn-icons-png.flaticon.com/128/81/81460.png"><span>חדשות</span></button>
   </div>
   <div class="bottom-button">
     <button id="editBtn" onclick="toggleEdit()"><img src="https://cdn-icons-png.flaticon.com/128/1159/1159633.png"><span>עריכה</span></button>
@@ -179,7 +180,12 @@ function renderHistory(){
 
 function render(){renderCards("useful","usefulColumn");renderCards("fun","funColumn");renderHistory();document.querySelectorAll(".add-btn").forEach(btn=>btn.style.display=editMode?"block":"none");}
 function addRecent(section,index){const site={...data[section][index]};site.time=new Date().toLocaleString("he-IL");data.recent=data.recent.filter(s=>s.url!==site.url);data.recent.unshift(site);data.recent=data.recent.slice(0,40);localStorage.setItem("shortcuts",JSON.stringify(data));renderHistory();}
-function showPage(pageId){document.querySelectorAll(".page").forEach(p=>p.style.display="none");document.getElementById(pageId).style.display="block";}
+function showPage(pageId,btn){
+  document.querySelectorAll(".page").forEach(p=>p.style.display="none");
+  document.getElementById(pageId).style.display="block";
+  document.querySelectorAll(".side-menu .top-buttons button").forEach(b=>b.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+}
 function toggleEdit(){
   editMode=!editMode;
   document.querySelector(".save-btn").style.visibility = editMode ? "visible" : "hidden";
@@ -193,7 +199,8 @@ function searchGoogle(){const query=document.getElementById("searchInput").value
 function changeBackground(){const url=prompt("הכנס כתובת תמונה לרקע:");if(url){document.body.style.background=`url('${url}') center/cover no-repeat`;localStorage.setItem("backgroundURL",url);}}
 document.getElementById("searchInput").addEventListener("keypress",e=>{if(e.key==="Enter")searchGoogle();});
 
-render();showPage("home");
+render();showPage("sites",document.querySelector(".side-menu .top-buttons button:nth-child(2)"));
+
 </script>
 </body>
 </html>
