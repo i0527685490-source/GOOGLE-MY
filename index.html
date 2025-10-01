@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head> <meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
-<meta charset="UTF-8"> <meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
+<head>  <meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
+<meta charset="UTF-8">  <meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
 <title>דּף הַבַּיִת</title>
 <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg" type="image/svg+xml">
 <meta name="description" content="דף הבית הנח ביותר, עם קישורים שימושיים, חדשות ופנאי, תפריט צד ימין, חיפוש בגוגל, ותוכן עדכני. אתר נגיש ונוח לגלישה.">
@@ -17,8 +17,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="דּף הַבַּיִת">
 <meta name="twitter:description" content="דף הבית הנח ביותר, עם קישורים שימושיים, חדשות ופנאי, תפריט צד ימין, חיפוש בגוגל ותוכן עדכני.">
+<meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg">
-  <meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
 <style>
 body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding:0 20px 20px;direction:rtl;min-height:100vh;color:#333;display:flex;flex-direction:column}
 .side-menu{position:fixed;top:0;right:0;width:80px;height:100vh;background:#fff;box-shadow:-2px 0 10px rgba(0,0,0,0.15);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px 0;z-index:20}
@@ -55,9 +55,10 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
 .history-item{background:rgba(255,255,255,.7);padding:10px 15px;border-radius:8px;border-bottom:1px solid #ddd;display:flex;align-items:center;gap:10px}
 .history-item img{width:24px;height:24px;border-radius:4px;object-fit:cover}
 .history-item a{color:#0078d7;text-decoration:none;font-weight:600}
-.recent-home{margin-top:-0px; display:flex;gap:10px;z-index:15}
+/* --- השינוי כאן: העלאת המיקום של ה-6 כרטיסים בדף הבית --- */
+.recent-home{margin-top:-0px; /* קודם היה 0px */ display:flex;gap:10px;z-index:15}
 .recent-home .card{width:80px;height:80px;padding:3px}
-.recent-home .card a{font-size:0.7em}
+.recent-home .card a{font-size:0.7em} /* קטן יותר */
 .extras-container{display:flex;gap:15px;height:76vh}
 .frame{flex:1;margin:0;border-radius:15px;overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,0.2);background:#fff}
 .frame iframe{width:100%;height:100%;border:none}
@@ -93,16 +94,31 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
 </div>
 
 <div id="home" class="page">
-  <div id="dateTimeBox" style="position:fixed; top:60px; left:20px; background:rgba(255,255,255,0.85); padding:10px 15px; border-radius:12px; font-family:Segoe UI, Arial, sans-serif; font-size:14px; box-shadow:0 2px 8px rgba(0,0,0,0.15); text-align:center; z-index:50;">
+
+  <div id="dateTimeBox" style="
+      position:fixed;
+      top:60px;
+      left:20px;
+      background:rgba(255,255,255,0.85);
+      padding:10px 15px;
+      border-radius:12px;
+      font-family:Segoe UI, Arial, sans-serif;
+      font-size:14px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.15);
+      text-align:center;
+      z-index:50;">
     <div id="clock">00:00</div>
     <div id="date">01/01/2025</div>
   </div>
 
-<div>
-    <h3 style="margin:370px 0 20px; background:rgba(255,255,255,0.7); padding:8px 12px; border-radius:10px; width:fit-content; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+  <div style="margin-top:350px;">
+    <h3 style="margin:20px 0 20px; background:rgba(255,255,255,0.7);
+               padding:8px 12px; border-radius:10px;
+               width:fit-content; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
       נפתחו לאחרונה
     </h3>
     <div class="recent-home" id="recentHomeSimple"></div>
+  </div>
 </div>
 
 <div id="sites" class="page">
@@ -142,74 +158,24 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
 </div>
 
 <script>
-const defaultData={
-useful:[
-{name:"חשבון Google",url:"https://myaccount.google.com/?utm_source=OGB&utm_medium=app&authuser=0",icon:"https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"},
-{name:"Gmail",url:"https://mail.google.com/mail/?authuser=0",icon:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_(2020).svg/1280px-Gmail_icon_(2020).svg.png"},
-{name:"Canva",url:"https://www.canva.com/",icon:"https://1000logos.net/wp-content/uploads/2020/03/Canva-icon.png"},
-{name:"צ'אט GPT",url:"https://chatgpt.com/",icon:"https://img.icons8.com/?size=1200&id=UVkvulvTjpo1&format=png"},
-{name:"הומפיוטר",url:"https://i0527685490-source.github.io/homputer1/",icon:"https://github.com/i0527685490-source/homputer1/blob/main/הלוגו_של_הומפיוטר-removebg-preview.png?raw=true"},
-{name:"GitHub",url:"https://github.com/",icon:"https://upload.wikimedia.org/wikipedia/commons/d/d7/GitHub_font_awesome.svg"},
-{name:"ElevenLabs",url:"https://elevenlabs.io/app/speech-synthesis/text-to-speech",icon:"https://img.icons8.com/?size=1200&id=kQSS04V7DmPz&format=png"},
-{name:"AliExpress",url:"https://www.aliexpress.com/",icon:"https://israelaliexpress.co.il/wp-content/uploads/2024/09/aliexpress_logo_icon_167892.webp"},
-{name:"דרייב (Google Drive)",url:"https://drive.google.com/?authuser=0",icon:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_(2020).svg/2295px-Google_Drive_icon_(2020).svg.png"},
-{name:"תרגום Google",url:"https://translate.google.com/?authuser=0",icon:"https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png"},
-{name:"צ'אט ג'מיני",url:"https://gemini.google.com/?utm_source=app_launcher&utm_medium=owned&utm_campaign=base_all&authuser=0",icon:"https://images.seeklogo.com/logo-png/62/2/google-gemini-icon-logo-png_seeklogo-623016.png"},
-{name:"הפניות (NetFree)",url:"https://netfree.link/app/#/tickets/list",icon:"https://netfree.link/img/logo/icon.svg"},
-{name:"מוביט",url:"https://moovitapp.com/",icon:"https://iconape.com/wp-content/files/yr/291542/svg/moovit-seeklogo.com.svg"},
-{name:"מפות Google",url:"https://maps.google.com/?authuser=0",icon:"https://upload.wikimedia.org/wikipedia/commons/a/aa/Google_Maps_icon_(2020).svg"},
-{name:"Google Search Console",url:"https://search.google.com/search-console?resource_id=https%3A%2F%2Fi0527685490-source.github.io%2Fhomputer1%2F",icon:"https://cdn.worldvectorlogo.com/logos/search-console-icon-2025-1.svg"},
-{name:"אייקונים",url:"https://cdn-icons-png.flaticon.com/128/14649/14649052.png",icon:"https://cdn-icons-png.flaticon.com/128/14649/14649052.png"}
-],
-fun:[
-{name:"הגיזרה",url:"https://hagizra.news/",icon:"https://s3.prog.co.il/data/xfmg/thumbnail/151/151632-9c7f4a5172f4fb5a85edf25dd557eefe.jpg?1722841266"},
-{name:"אמס",url:"https://www.emess.co.il/",icon:"https://play-lh.googleusercontent.com/WbzfkVRMPDSV29AXTCSWG9FrnVkbaFDrni_zEPp4XCIg7hga3dk7KepSlph8nAGviBfk=w240-h480-rw"},
-{name:"JDN",url:"https://jdn.co.il/",icon:"https://play-lh.googleusercontent.com/ku2XSc8xK5VBEYCHCfA9sncTxezdR24W_A36AANZPHQrXoKQ24rxDwCc8Bdw5lMHBYmk"},
-{name:"החתול השחור",url:"https://black-cat.thechats.click/",icon:"https://black-cat.thechats.click/api/files/a2d59300d00906d247b5f04909f9a39d28e98ffc"},
-{name:"פרוג",url:"https://www.prog.co.il/",icon:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAZCAMAAAAVHr4VAAAAMFBMVEVHcEy3zgK3zgK3zgK3zgK3zgK2zgG3zgK3zgK3zgK3zgK3zgK3zgK3zgG3zgK3zgI2G9aeAAAAD3RSTlMAs+7igSgSx2JHc5YzG9ckgzpOAAAAqUlEQVQokaWRyxbDIAhEwfjWxP//2wo2YqndpLPjXMBhBPhLp2lKxt/MaURyg/kda23MHnt4EMuzRJ8sSmvuUHotL8JZAySBiaFZ6qItSF3gorctGl7TVQUG3lL42rFV/HW/BOOSVhXDhq90Ok8fCF7s/DttHkawNI82fk6/Uzjn+yaUWGGx3E8LKtPe4vK45MeHkU7aYfdsJL1EvQhvbxuK4jxqtmb2RC9sahaJQhwAwQAAAABJRU5ErkJggg=="},
-{name:"רץ בוואטסאפ",url:"https://www.tv2000.co.il/רץ-בוואטסאפ",icon:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/ערוץ_2000.png/250px-ערוץ_2000.png"},
-{name:"מיוזיק סקופ - יוטיוב",url:"https://www.youtube.com/@מיוזיקסקופ/featured",icon:"https://www.hngn.co.il/static/media/musicScoop.2f587aff2142732d5ca0.jpg"},
-{name:"הורדה מיוטיוב",url:"https://ketertorah.co.il/הורדה-מהירה-מיוטיוב/Opoj3Qyn9Zo",icon:"https://ketertorah.co.il/חדש/אייקון כתר תורה ג.png"},
-{name:"היכל הנגינה",url:"https://netfree.link/api/favicon/www.hngn.co.il",icon:"https://www.hngn.co.il/static/media/logo.64caba26d9cb06269eb3.png"},
-{name:"מתמחים טופ",url:"https://mitmachim.top/",icon:"https://play-lh.googleusercontent.com/GYvIesmegDisgbA4NFWP5keBeAtiqFWTljPAenIxzExzSUZhIcFM_uLGqZwscbh9j3M"},
-{name:"שיר חדש - פרוג",url:"https://www.prog.co.il/threads/הסינגלים-והקליפים-החדשים.387726/page-1294",icon:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAZCAMAAAAVHr4VAAAAMFBMVEVHcEy3zgK3zgK3zgK3zgK3zgK2zgG3zgK3zgK3zgK3zgK3zgK3zgK3zgG3zgK3zgI2G9aeAAAAD3RSTlMAs+7igSgSx2JHc5YzG9ckgzpOAAAAqUlEQVQokaWRyxbDIAhEwfjWxP//2wo2YqndpLPjXMBhBPhLp2lKxt/MaURyg/kda23MHnt4EMuzRJ8sSmvuUHotL8JZAySBiaFZ6qItSF3gorctGl7TVQUG3lL42rFV/HW/BOOSVhXDhq90Ok8fCF7s/DttHkawNI82fk6/Uzjn+yaUWGGx3E8LKtPe4vK45MeHkU7aYfdsJL1EvQhvbxuK4jxqtmb2RC9sahaJQhwAwQAAAABJRU5ErkJggg=="},
-{name:"חדשות המוזיקה",url:"https://newsmusic.blogspot.com/",icon:"https://www.aasystems-sound.co.il/wp-content/uploads/2019/11/מוזיקה-לעסקים.png"}
-],
-recent:[]
-};
+const defaultData={useful:[{name:"Google",url:"https://www.google.com",icon:"https://www.google.com/favicon.ico"},{name:"YouTube",url:"https://www.youtube.com",icon:"https://www.youtube.com/favicon.ico"}],fun:[{name:"Netflix",url:"https://www.netflix.com",icon:"https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.png"},{name:"Twitch",url:"https://twitch.tv",icon:"https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png"}],recent:[]};
 let data=JSON.parse(localStorage.getItem("shortcuts"))||defaultData,editMode=false;
 const savedBackground=localStorage.getItem("backgroundURL");if(savedBackground)document.body.style.background=`url('${savedBackground}') center/cover no-repeat`;
-
 function renderCards(section,columnId){const col=document.getElementById(columnId);col.innerHTML="";data[section].forEach((site,index)=>{const card=document.createElement("div");card.className="card";card.draggable=editMode;card.dataset.index=index;if(editMode){card.classList.add("editing");card.innerHTML=`<input value="${site.name}" placeholder="שם"><input value="${site.url}" placeholder="כתובת"><input value="${site.icon}" placeholder="כתובת אייקון">`;const delBtn=document.createElement("button");delBtn.textContent="מחיקה";delBtn.className="delete-btn";delBtn.onclick=e=>{e.stopPropagation();data[section].splice(index,1);renderCards(section,columnId)};card.appendChild(delBtn);card.addEventListener("dragstart",e=>{e.dataTransfer.setData("text/plain",index)});col.addEventListener("dragover",e=>{e.preventDefault()});col.addEventListener("drop",e=>{e.preventDefault();const fromIndex=e.dataTransfer.getData("text/plain"),toIndex=index;if(fromIndex!==toIndex){const moved=data[section].splice(fromIndex,1)[0];data[section].splice(toIndex,0,moved);renderCards(section,columnId)}})}else{card.onclick=()=>{window.open(site.url,"_blank");addRecent(section,index)};card.innerHTML=`<img src="${site.icon||'https://via.placeholder.com/32'}"><a>${site.name}</a>`}col.appendChild(card)})}
-
 function renderHistory(){const col=document.getElementById("recentColumn");col.innerHTML="";data.recent.forEach(site=>{const item=document.createElement("div");item.className="history-item";item.innerHTML=`<img src="${site.icon||'https://via.placeholder.com/24'}"><a href="${site.url}" target="_blank">${site.name}</a><small>${site.time||""}</small>`;col.appendChild(item)})}
-
 function renderRecentHome(){const col=document.getElementById("recentHomeSimple");col.innerHTML="";data.recent.slice(0,6).forEach(site=>{const card=document.createElement("div");card.className="card";card.innerHTML=`<img src="${site.icon||'https://via.placeholder.com/32'}"><a>${site.name}</a>`;card.onclick=()=>window.open(site.url,"_blank");col.appendChild(card)})}
-
 function render(){renderCards("useful","usefulColumn");renderCards("fun","funColumn");renderHistory();renderRecentHome();document.querySelectorAll(".add-btn").forEach(btn=>btn.style.display=editMode?"block":"none")}
-
 function addRecent(section,index){const site={...data[section][index]};site.time=new Date().toLocaleString("he-IL");data.recent=data.recent.filter(s=>s.url!==site.url);data.recent.unshift(site);data.recent=data.recent.slice(0,40);localStorage.setItem("shortcuts",JSON.stringify(data));renderHistory();renderRecentHome()}
-
 function showPage(pageId,btn){document.querySelectorAll(".page").forEach(p=>p.style.display="none");document.getElementById(pageId).style.display="flex";document.querySelectorAll(".side-menu .top-buttons button").forEach(b=>b.classList.remove("active"));if(btn)btn.classList.add("active");localStorage.setItem("lastPage",pageId);const editBtn=document.getElementById("editBtn");if(pageId==="sites"){editBtn.style.display="flex"}else{editBtn.style.display="none";if(editMode)toggleEdit()}}
-
 function toggleEdit(){editMode=!editMode;document.querySelector(".save-btn").style.visibility=editMode?"visible":"hidden";document.querySelector(".cancel-btn").style.visibility=editMode?"visible":"hidden";render()}
-
 function saveData(){["useful","fun"].forEach(section=>{const col=document.getElementById(section==="useful"?"usefulColumn":"funColumn");col.querySelectorAll(".card").forEach((card,index)=>{if(editMode){const inputs=card.querySelectorAll("input");if(inputs.length===3){data[section][index].name=inputs[0].value.trim()||"שם חדש";data[section][index].url=inputs[1].value.trim()||"https://";data[section][index].icon=inputs[2].value.trim()||"https://via.placeholder.com/32"}}})});localStorage.setItem("shortcuts",JSON.stringify(data));toggleEdit()}
-
 function cancelEdit(){data=JSON.parse(localStorage.getItem("shortcuts"))||defaultData;toggleEdit()}
-
 function addSite(section){data[section].push({name:"חדש",url:"https://",icon:"https://via.placeholder.com/32"});render()}
-
 function changeBackground(){const url=prompt("הכנס כתובת תמונה לרקע:");if(url){document.body.style.background=`url('${url}') center/cover no-repeat`;localStorage.setItem("backgroundURL",url)}}
-
 function searchGoogle(){const input=document.getElementById("searchInput").value.trim();if(input){if(input.startsWith("http://")||input.startsWith("https://"))window.open(input,"_blank");else if(input.includes("."))window.open("https://"+input,"_blank");else window.open("https://www.google.com/search?q="+encodeURIComponent(input),"_blank")}}
-
 const lastPage=localStorage.getItem("lastPage")||"home";showPage(lastPage,document.querySelector(`.side-menu button[onclick*="${lastPage}"]`));render();
-
 function updateDateTime(){const now=new Date();const optionsDate={day:'2-digit',month:'2-digit',year:'numeric'};const optionsDay={weekday:'long'};document.getElementById("clock").textContent=now.toLocaleTimeString("he-IL",{hour:'2-digit',minute:'2-digit'});document.getElementById("date").textContent=now.toLocaleDateString("he-IL",optionsDay)+" | "+now.toLocaleDateString("he-IL",optionsDate)}
-
 setInterval(updateDateTime,1000);updateDateTime();
 </script>
 </body>
 </html>
-
