@@ -76,6 +76,8 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
 #backgroundModal input[type="color"]{margin-top:10px}
 .close-btn{background:#dc3545;color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;margin-top:15px}
 .close-btn:hover{background:#a71d2a}
+.daily-bg-btn{background:#0078d7;color:#fff;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;margin-top:10px}
+.daily-bg-btn:hover{background:#005fa3}
 </style>
 </head>
 <body>
@@ -153,7 +155,6 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
   </div>
 </div>
 
-
 <div id="historyPage" class="page"><div class="column" id="recentColumn"></div></div>
 
 <div id="news" class="page">
@@ -180,10 +181,24 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
       <img src="https://a-static.besthdwallpaper.com/beautiful-sunset-view-background-wallpaper-1920x1200-11520_6.jpg" onclick="setBackground(this.src)">
       <img src="https://www.photo-art.co.il/wp-content/uploads/2015/06/BY1A65881.jpg" onclick="setBackground(this.src)">
       <img src="https://i.pinimg.com/originals/06/41/e9/0641e9a7870e93edcb1eb4eb8592aa95.jpg" onclick="setBackground(this.src)">
+
+
+    <img src="https://www.prog.co.il/attachments/1-png.642534/" onclick="setBackground(this.src)">
+      <img src="https://s3.prog.co.il/data/attachments/642/642304-2be58d64764f9a650d3ad36e8a6d5b09.jpg" onclick="setBackground(this.src)">
+      <img src="https://www.prog.co.il/attachments/61-jpg.642512/" onclick="setBackground(this.src)">
+      <img src="https://www.prog.co.il/attachments/74-jpg.642513/" onclick="setBackground(this.src)">
+      <img src="https://www.prog.co.il/attachments/18-jpg.642545/" onclick="setBackground(this.src)">
+      <img src="https://www.prog.co.il/attachments/15-jpg.642544/" onclick="setBackground(this.src)">
+
+
+
     </div>
     <h4>בחר צבע:</h4>
     <input type="color" id="bgColorPicker" onchange="setBackgroundColor(this.value)">
-    <br><button class="close-btn" onclick="closeBackgroundModal()">סגור</button>
+    <br>
+    <button class="daily-bg-btn" onclick="toggleDailyBackground()">החלפה יומית</button>
+    <br>
+    <button class="close-btn" onclick="closeBackgroundModal()">סגור</button>
   </div>
 </div>
 
@@ -195,16 +210,34 @@ const savedBackground=localStorage.getItem("backgroundURL");if(savedBackground)d
 // רקע - פונקציות חדשות
 function openBackgroundModal(){document.getElementById("backgroundModal").style.display="flex"}
 function closeBackgroundModal(){document.getElementById("backgroundModal").style.display="none"}
-function setBackground(url){document.body.style.background=`url('${url}') center/cover no-repeat`;localStorage.setItem("backgroundURL",`url('${url}') center/cover no-repeat`)}
-function setBackgroundColor(color){document.body.style.background=color;localStorage.setItem("backgroundURL",color)}
+function setBackground(url){document.body.style.background=`url('${url}') center/cover no-repeat`;localStorage.setItem("backgroundURL",`url('${url}') center/cover no-repeat`);localStorage.setItem("dailyBgEnabled","false")}
+function setBackgroundColor(color){document.body.style.background=color;localStorage.setItem("backgroundURL",color);localStorage.setItem("dailyBgEnabled","false")}
 function applyBackgroundUrl(){const url=document.getElementById("bgUrlInput").value.trim();if(url){setBackground(url)}}
 
-function renderCards(section,columnId){const col=document.getElementById(columnId);col.innerHTML="";data[section].forEach((site,index)=>{const card=document.createElement("div");card.className="card";card.draggable=editMode;card.dataset.index=index;if(editMode){card.classList.add("editing");card.innerHTML=`<input value="${site.name}" placeholder="שם"><input value="${site.url}" placeholder="כתובת"><input value="${site.icon}" placeholder="כתובת אייקון">`;const delBtn=document.createElement("button");delBtn.textContent="מחיקה";delBtn.className="delete-btn";delBtn.onclick=e=>{e.stopPropagation();data[section].splice(index,1);renderCards(section,columnId)};card.appendChild(delBtn);card.addEventListener("dragstart",e=>{e.dataTransfer.setData("text/plain",index)});col.addEventListener("dragover",e=>{e.preventDefault()});col.addEventListener("drop",e=>{e.preventDefault();const fromIndex=e.dataTransfer.getData("text/plain"),toIndex=index;if(fromIndex!==toIndex){const moved=data[section].splice(fromIndex,1)[0];data[section].splice(toIndex,0,moved);renderCards(section,columnId)}})}else{card.onclick=()=>{window.open(site.url,"_self");addRecent(section,index)};card.innerHTML=`<img src="${site.icon||'https://via.placeholder.com/32'}"><a>${site.name}</a>`}col.appendChild(card)})}
-function renderHistory(){const col=document.getElementById("recentColumn");col.innerHTML="";data.recent.forEach(site=>{const item=document.createElement("div");item.className="history-item";item.innerHTML=`<img src="${site.icon||'https://via.placeholder.com/24'}"><a href="${site.url}" target="_self">${site.name}</a><small>${site.time||""}</small>`;col.appendChild(item)})}
-function renderRecentHome(){const col=document.getElementById("recentHomeSimple");col.innerHTML="";data.recent.slice(0,6).forEach(site=>{const card=document.createElement("div");card.className="card";card.innerHTML=`<img src="${site.icon||'https://via.placeholder.com/32'}"><a>${site.name}</a>`;card.onclick=()=>window.open(site.url,"_self");col.appendChild(card)})}
+// החלפה יומית של רקעים
+const savedDailyBg=localStorage.getItem("dailyBgEnabled")==="true";
+const bgImages=[...document.querySelectorAll("#backgroundModal .bg-options img")].map(img=>img.src);
+function toggleDailyBackground(){
+    const isEnabled=localStorage.getItem("dailyBgEnabled")==="true";
+    localStorage.setItem("dailyBgEnabled",!isEnabled);
+    alert(!isEnabled?"החלפת רקעים יומית מופעלת":"החלפת רקעים יומית כבויה");
+}
+function applyDailyBackground(){
+    if(localStorage.getItem("dailyBgEnabled")==="true" && bgImages.length>0){
+        const today=Math.floor(new Date().getTime()/(1000*60*60*24));
+        const index=today%bgImages.length;
+        setBackground(bgImages[index]);
+    }
+}
+applyDailyBackground();
+
+// פונקציות קיימות
+function renderCards(section,columnId){const col=document.getElementById(columnId);col.innerHTML="";data[section].forEach((site,index)=>{const card=document.createElement("div");card.className="card";card.draggable=editMode;card.dataset.index=index;if(editMode){card.classList.add("editing");card.innerHTML=`<input value="${site.name}" placeholder="שם"><input value="${site.url}" placeholder="כתובת"><input value="${site.icon}" placeholder="כתובת אייקון">`;const delBtn=document.createElement("button");delBtn.textContent="מחיקה";delBtn.className="delete-btn";delBtn.onclick=e=>{e.stopPropagation();data[section].splice(index,1);renderCards(section,columnId)};card.appendChild(delBtn);card.addEventListener("dragstart",e=>{e.dataTransfer.setData("text/plain",index)});col.addEventListener("dragover",e=>{e.preventDefault()});col.addEventListener("drop",e=>{e.preventDefault();const fromIndex=e.dataTransfer.getData("text/plain"),toIndex=index;if(fromIndex!==toIndex){const moved=data[section].splice(fromIndex,1)[0];data[section].splice(toIndex,0,moved);renderCards(section,columnId)}})}else{card.onclick=()=>{window.open(site.url,"_blank");addRecent(section,index)};card.innerHTML=`<img src="${site.icon||'https://via.placeholder.com/32'}"><a>${site.name}</a>`}col.appendChild(card)})}
+function renderHistory(){const col=document.getElementById("recentColumn");col.innerHTML="";data.recent.forEach(site=>{const item=document.createElement("div");item.className="history-item";item.innerHTML=`<img src="${site.icon||'https://via.placeholder.com/24'}"><a href="${site.url}" target="_blank">${site.name}</a><small>${site.time||""}</small>`;col.appendChild(item)})}
+function renderRecentHome(){const col=document.getElementById("recentHomeSimple");col.innerHTML="";data.recent.slice(0,6).forEach(site=>{const card=document.createElement("div");card.className="card";card.innerHTML=`<img src="${site.icon||'https://via.placeholder.com/32'}"><a>${site.name}</a>`;card.onclick=()=>window.open(site.url,"_blank");col.appendChild(card)})}
 function render(){renderCards("useful","usefulColumn");renderCards("fun","funColumn");renderHistory();renderRecentHome();document.querySelectorAll(".add-btn").forEach(btn=>btn.style.display=editMode?"block":"none");document.getElementById("addCategoryBtn").style.display=editMode?"block":"none";document.querySelectorAll("#categoriesContainer h3").forEach(h=>h.contentEditable=editMode);document.querySelectorAll(".category-delete-btn").forEach(btn=>btn.style.display=editMode?"block":"none")}
 function addRecent(section,index){const site={...data[section][index]};site.time=new Date().toLocaleString("he-IL");data.recent=data.recent.filter(s=>s.url!==site.url);data.recent.unshift(site);data.recent=data.recent.slice(0,40);localStorage.setItem("shortcuts",JSON.stringify(data));renderHistory();renderRecentHome()}
-function showPage(pageId,btn){document.querySelectorAll(".page").forEach(p=>p.style.display="none");document.getElementById(pageId).style.display="flex";document.querySelectorAll(".side-menu .top-buttons button").forEach(b=>b.classList.remove("active"));if(btn)btn.classList.add("active");localStorage.setItem("lastPage",pageId);const editBtn=document.getElementById("editBtn");if(pageId==="sites"){editBtn.style.display="flex"}else{editBtn.style.display="none";if(editMode)toggleEdit()}}
+function showPage(pageId,btn){document.querySelectorAll(".page").forEach(p=>p.style.display="none");document.getElementById(pageId).style.display="flex";document.querySelectorAll(".side-menu .top-buttons button").forEach(b=>b.classList.remove("active"));if(btn)btn.classList.add("active");localStorage.setItem("lastPage",pageId);const editBtn=document.getElementById("editBtn");if(pageId==="sites"){editBtn.style.display="flex"}else{editMode&&toggleEdit();editBtn.style.display="none"}}
 function toggleEdit(){editMode=!editMode;document.querySelector(".save-btn").style.visibility=editMode?"visible":"hidden";document.querySelector(".cancel-btn").style.visibility=editMode?"visible":"hidden";render()}
 function saveData(){["useful","fun"].forEach(section=>{const col=document.getElementById(section==="useful"?"usefulColumn":"funColumn");col.querySelectorAll(".card").forEach((card,index)=>{if(editMode){const inputs=card.querySelectorAll("input");if(inputs.length===3){data[section][index].name=inputs[0].value.trim()||"שם חדש";data[section][index].url=inputs[1].value.trim()||"https://";data[section][index].icon=inputs[2].value.trim()||"https://via.placeholder.com/32"}}})});document.querySelectorAll("#categoriesContainer h3").forEach(h=>h.textContent=h.textContent.trim());localStorage.setItem("shortcuts",JSON.stringify(data));toggleEdit()}
 function cancelEdit(){data=JSON.parse(localStorage.getItem("shortcuts"))||defaultData;toggleEdit()}
@@ -212,6 +245,9 @@ function addSite(section){data[section].push({name:"חדש",url:"https://",icon:
 function addCategory(){const container=document.getElementById("categoriesContainer");const newCat=document.createElement("div");newCat.className="category-box";newCat.innerHTML=`<h3 contenteditable="true">קטגוריה חדשה</h3><div class="cards-grid"></div><button class="add-btn" onclick="addSite('new')">+</button><button class="category-delete-btn" onclick="deleteCategory(this)">❌ מחיקה</button>`;container.appendChild(newCat)}
 function deleteCategory(btn){if(confirm("למחוק קטגוריה זו?")){btn.parentElement.remove()}}
 function searchGoogle(){const input=document.getElementById("searchInput").value.trim();if(input){if(input.startsWith("http://")||input.startsWith("https://"))window.open(input,"_self");else if(input.includes("."))window.open("https://"+input,"_self");else window.open("https://www.google.com/search?q="+encodeURIComponent(input),"_self")}}
+
+document.getElementById("searchInput").addEventListener("keydown", function(e){if(e.key==="Enter"){searchGoogle();}});
+
 const lastPage=localStorage.getItem("lastPage")||"home";showPage(lastPage,document.querySelector(`.side-menu button[onclick*="${lastPage}"]`));render();
 function updateDateTime(){const now=new Date();const optionsDate={day:'2-digit',month:'2-digit',year:'numeric'};const optionsDay={weekday:'long'};document.getElementById("clock").textContent=now.toLocaleTimeString("he-IL",{hour:'2-digit',minute:'2-digit'});document.getElementById("date").textContent=now.toLocaleDateString("he-IL",optionsDay)+" | "+now.toLocaleDateString("he-IL",optionsDate)}
 setInterval(updateDateTime,1000);updateDateTime();
