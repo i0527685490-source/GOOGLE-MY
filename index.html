@@ -66,6 +66,16 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
 .frame{flex:1;margin:0;border-radius:15px;overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,0.2);background:#fff}
 .frame iframe{width:100%;height:100%;border:none}
 @media(max-width:900px){.cards-grid{grid-template-columns:repeat(auto-fill,minmax(60px,1fr))}.card img{width:30px;height:30px}.extras-container{flex-direction:column;height:auto}}
+/* חלונית רקעים */
+#backgroundModal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center;z-index:100}
+#backgroundModal .modal-content{background:#fff;padding:20px;border-radius:12px;width:80%;max-width:600px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+#backgroundModal h3{margin-top:0}
+.bg-options{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:15px 0}
+.bg-options img{width:80px;height:60px;object-fit:cover;border-radius:8px;cursor:pointer;transition:.2s}
+.bg-options img:hover{transform:scale(1.05)}
+#backgroundModal input[type="color"]{margin-top:10px}
+.close-btn{background:#dc3545;color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;margin-top:15px}
+.close-btn:hover{background:#a71d2a}
 </style>
 </head>
 <body>
@@ -80,7 +90,7 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
   </div>
   <div class="bottom-button">
     <button id="editBtn" onclick="toggleEdit()"><img src="https://cdn-icons-png.flaticon.com/128/1159/1159633.png"><span>עריכה</span></button>
-    <button onclick="changeBackground()"><img src="https://cdn-icons-png.flaticon.com/128/3342/3342137.png"><span>רקע</span></button>
+    <button onclick="openBackgroundModal()"><img src="https://cdn-icons-png.flaticon.com/128/3342/3342137.png"><span>רקע</span></button>
   </div>
 </div>
 
@@ -150,10 +160,39 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
   </div>
 </div>
 
+<!-- חלונית רקעים -->
+<div id="backgroundModal">
+  <div class="modal-content">
+    <h3>בחר רקע</h3>
+    <input type="text" id="bgUrlInput" placeholder="הכנס כתובת תמונה" style="width:70%;padding:6px;border:1px solid #ccc;border-radius:6px"><br><br>
+    <button onclick="applyBackgroundUrl()">החל כתובת</button>
+    <h4>רקעים מוכנים:</h4>
+    <div class="bg-options">
+      <img src="https://static.wixstatic.com/media/8cb7ea_bba48fe952e04722a76d58c6953b832b~mv2.png" onclick="setBackground(this.src)">
+      <img src="https://reka.us/wp-content/uploads/2012/09/windows-8-forests-wallpapers-14.jpg" onclick="setBackground(this.src)">
+      <img src="https://www.prog.co.il/articles/%D7%90%D7%99%D7%9A-%D7%9E%D7%95%D7%A6%D7%90%D7%99%D7%9D-%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA-%D7%99%D7%A4%D7%95%D7%AA-%D7%9C%D7%94%D7%95%D7%A8%D7%93%D7%94-%D7%91%D7%97%D7%99%D7%A0%D7%9D-%D7%9E%D7%91%D7%9C%D7%99-%D7%9C%D7%94%D7%A4%D7%A8-%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA-%D7%99%D7%95%D7%A6%D7%A8%D7%99%D7%9D.2862/cover-image?t=1663607458" onclick="setBackground(this.src)">
+      <img src="https://a-static.besthdwallpaper.com/beautiful-sunset-view-background-wallpaper-1920x1200-11520_6.jpg" onclick="setBackground(this.src)">
+      <img src="https://www.photo-art.co.il/wp-content/uploads/2015/06/BY1A65881.jpg" onclick="setBackground(this.src)">
+      <img src="https://i.pinimg.com/originals/06/41/e9/0641e9a7870e93edcb1eb4eb8592aa95.jpg" onclick="setBackground(this.src)">
+    </div>
+    <h4>בחר צבע:</h4>
+    <input type="color" id="bgColorPicker" onchange="setBackgroundColor(this.value)">
+    <br><button class="close-btn" onclick="closeBackgroundModal()">סגור</button>
+  </div>
+</div>
+
 <script>
 const defaultData={useful:[{name:"Google",url:"https://www.google.com",icon:"https://www.google.com/favicon.ico"},{name:"YouTube",url:"https://www.youtube.com",icon:"https://www.youtube.com/favicon.ico"}],fun:[{name:"Netflix",url:"https://www.netflix.com",icon:"https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.png"},{name:"Twitch",url:"https://twitch.tv",icon:"https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png"}],recent:[]};
 let data=JSON.parse(localStorage.getItem("shortcuts"))||defaultData,editMode=false;
-const savedBackground=localStorage.getItem("backgroundURL");if(savedBackground)document.body.style.background=`url('${savedBackground}') center/cover no-repeat`;
+const savedBackground=localStorage.getItem("backgroundURL");if(savedBackground)document.body.style.background=savedBackground;
+
+// רקע - פונקציות חדשות
+function openBackgroundModal(){document.getElementById("backgroundModal").style.display="flex"}
+function closeBackgroundModal(){document.getElementById("backgroundModal").style.display="none"}
+function setBackground(url){document.body.style.background=`url('${url}') center/cover no-repeat`;localStorage.setItem("backgroundURL",`url('${url}') center/cover no-repeat`)}
+function setBackgroundColor(color){document.body.style.background=color;localStorage.setItem("backgroundURL",color)}
+function applyBackgroundUrl(){const url=document.getElementById("bgUrlInput").value.trim();if(url){setBackground(url)}}
+
 function renderCards(section,columnId){const col=document.getElementById(columnId);col.innerHTML="";data[section].forEach((site,index)=>{const card=document.createElement("div");card.className="card";card.draggable=editMode;card.dataset.index=index;if(editMode){card.classList.add("editing");card.innerHTML=`<input value="${site.name}" placeholder="שם"><input value="${site.url}" placeholder="כתובת"><input value="${site.icon}" placeholder="כתובת אייקון">`;const delBtn=document.createElement("button");delBtn.textContent="מחיקה";delBtn.className="delete-btn";delBtn.onclick=e=>{e.stopPropagation();data[section].splice(index,1);renderCards(section,columnId)};card.appendChild(delBtn);card.addEventListener("dragstart",e=>{e.dataTransfer.setData("text/plain",index)});col.addEventListener("dragover",e=>{e.preventDefault()});col.addEventListener("drop",e=>{e.preventDefault();const fromIndex=e.dataTransfer.getData("text/plain"),toIndex=index;if(fromIndex!==toIndex){const moved=data[section].splice(fromIndex,1)[0];data[section].splice(toIndex,0,moved);renderCards(section,columnId)}})}else{card.onclick=()=>{window.open(site.url,"_self");addRecent(section,index)};card.innerHTML=`<img src="${site.icon||'https://via.placeholder.com/32'}"><a>${site.name}</a>`}col.appendChild(card)})}
 function renderHistory(){const col=document.getElementById("recentColumn");col.innerHTML="";data.recent.forEach(site=>{const item=document.createElement("div");item.className="history-item";item.innerHTML=`<img src="${site.icon||'https://via.placeholder.com/24'}"><a href="${site.url}" target="_self">${site.name}</a><small>${site.time||""}</small>`;col.appendChild(item)})}
 function renderRecentHome(){const col=document.getElementById("recentHomeSimple");col.innerHTML="";data.recent.slice(0,6).forEach(site=>{const card=document.createElement("div");card.className="card";card.innerHTML=`<img src="${site.icon||'https://via.placeholder.com/32'}"><a>${site.name}</a>`;card.onclick=()=>window.open(site.url,"_self");col.appendChild(card)})}
@@ -166,7 +205,6 @@ function cancelEdit(){data=JSON.parse(localStorage.getItem("shortcuts"))||defaul
 function addSite(section){data[section].push({name:"חדש",url:"https://",icon:"https://via.placeholder.com/32"});render()}
 function addCategory(){const container=document.getElementById("categoriesContainer");const newCat=document.createElement("div");newCat.className="category-box";newCat.innerHTML=`<h3 contenteditable="true">קטגוריה חדשה</h3><div class="cards-grid"></div><button class="add-btn" onclick="addSite('new')">+</button><button class="category-delete-btn" onclick="deleteCategory(this)">❌ מחיקה</button>`;container.appendChild(newCat)}
 function deleteCategory(btn){if(confirm("למחוק קטגוריה זו?")){btn.parentElement.remove()}}
-function changeBackground(){const url=prompt("הכנס כתובת תמונה לרקע:");if(url){document.body.style.background=`url('${url}') center/cover no-repeat`;localStorage.setItem("backgroundURL",url)}}
 function searchGoogle(){const input=document.getElementById("searchInput").value.trim();if(input){if(input.startsWith("http://")||input.startsWith("https://"))window.open(input,"_self");else if(input.includes("."))window.open("https://"+input,"_self");else window.open("https://www.google.com/search?q="+encodeURIComponent(input),"_self")}}
 const lastPage=localStorage.getItem("lastPage")||"home";showPage(lastPage,document.querySelector(`.side-menu button[onclick*="${lastPage}"]`));render();
 function updateDateTime(){const now=new Date();const optionsDate={day:'2-digit',month:'2-digit',year:'numeric'};const optionsDay={weekday:'long'};document.getElementById("clock").textContent=now.toLocaleTimeString("he-IL",{hour:'2-digit',minute:'2-digit'});document.getElementById("date").textContent=now.toLocaleDateString("he-IL",optionsDay)+" | "+now.toLocaleDateString("he-IL",optionsDate)}
