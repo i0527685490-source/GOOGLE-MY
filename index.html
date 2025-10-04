@@ -1,27 +1,14 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head>  
+<head>
 <meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
-<meta charset="UTF-8">  
-<meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
-<title>דּף הַבַּיִת</title>
+<meta charset="UTF-8">
+<title>דּף הַבַּיִת</title>
 <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/6268/6268612.png" type="image/svg+xml">
-<meta name="description" content="דף הבית הנח ביותר, עם קישורים שימושיים, חדשות ופנאי, תפריט צד ימין, חיפוש בגוגל, ותוכן עדכני. אתר נגיש ונוח לגלישה.">
-<meta name="keywords" content="דף הבית, קישורים שימושיים, חדשות, פנאי, חיפוש, נגישות, אתר נח, תפריט צד, אתרי בית">
+<meta name="description" content="דף הבית הנח ביותר, עם קישורים שימושיים, חדשות ופנאי, תפריט צד ימין, חיפוש בגוגל ותוכן עדכני. אתר נגיש ונוח לגלישה.">
 <meta name="author" content="דוד הוכמן">
 <meta name="robots" content="index, follow">
 <meta name="google" content="notranslate">
-<meta property="og:title" content="דּף הַבַּיִת">
-<meta property="og:description" content="דף הבית הנח ביותר, עם קישורים שימושיים, חדשות ופנאי, תפריט צד ימין, חיפוש בגוגל ותוכן עדכני.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://your-website-url.com/">
-<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="דּף הַבַּיִת">
-<meta name="twitter:description" content="דף הבית הנח ביותר, עם קישורים שימושיים, חדשות ופנאי, תפריט צד ימין, חיפוש בגוגל ותוכן עדכני.">
-<meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
-<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg">
-
 <style>
 body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding:0 20px 20px;direction:rtl;min-height:100vh;color:#333;display:flex;flex-direction:column}
 .side-menu{position:fixed;top:0;right:0;width:80px;height:100vh;background:#fff;box-shadow:-2px 0 10px rgba(0,0,0,0.15);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px 0;z-index:20}
@@ -41,8 +28,10 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
 .search-box{display:flex;align-items:center;background:#fff;border-radius:50px;padding:5px 15px;width:500px;max-width:90%;box-shadow:0 3px 10px rgba(0,0,0,0.15)}
 .search-box input{border:none;outline:none;flex:1;padding:10px 12px;font-size:1em;border-radius:50px}
 .search-box button{background:none;border:none;cursor:pointer;font-size:1.2em;margin-left:8px}
-.page{display:none;margin-top:70px;margin-right:100px;flex:1;display:flex;flex-direction:column}
-.category-box{background:rgba(255,255,255,.7);padding:15px;margin-bottom:20px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);position:relative}
+.page{display:none;margin-top:70px;margin-right:100px;flex:1;flex-direction:column}
+#home{display:flex} /* הצגה ברירת מחדל */
+#categoriesContainer{display:grid;grid-template-columns:repeat(3,1fr);gap:20px} /* <--- כאן השינוי! */
+.category-box{background:rgba(255,255,255,.7);padding:15px;margin-bottom:0px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);position:relative}
 .category-box h3{margin:0 0 15px}
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:20px}
 .card{background:#f0f2f5;border-radius:16px;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;transition:.2s;position:relative}
@@ -61,10 +50,6 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
 .history-item img{width:24px;height:24px;border-radius:4px;object-fit:cover}
 .history-item a{color:#0078d7;text-decoration:none;font-weight:600;flex:1}
 .history-item .remove-item{background:#dc3545;color:#fff;border:none;padding:2px 6px;border-radius:4px;cursor:pointer;margin-left:10px}
-.history-item .remove-item:hover{background:#a71d2a}
-.history-controls{display:flex;gap:10px;margin-bottom:10px}
-.history-controls button{padding:6px 12px;border:none;border-radius:6px;background:#0078d7;color:#fff;cursor:pointer;transition:.2s}
-.history-controls button:hover{background:#005fa3}
 .recent-home{margin-top:-0px; display:flex;gap:10px;z-index:15}
 .recent-home .card{width:80px;height:80px;padding:3px}
 .recent-home .card a{font-size:0.7em}
@@ -72,27 +57,19 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
 .frame{flex:1;margin:0;border-radius:15px;overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,0.2);background:#fff}
 .frame iframe{width:100%;height:100%;border:none}
 @media(max-width:900px){.cards-grid{grid-template-columns:repeat(auto-fill,minmax(60px,1fr))}.card img{width:30px;height:30px}.extras-container{flex-direction:column;height:auto}}
-/* חלונית רקעים */
 #backgroundModal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center;z-index:100}
 #backgroundModal .modal-content{background:#fff;padding:20px;border-radius:12px;width:80%;max-width:600px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
-#backgroundModal h3{margin-top:0}
 .bg-options{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:15px 0}
 .bg-options img{width:80px;height:60px;object-fit:cover;border-radius:8px;cursor:pointer;transition:.2s}
 .bg-options img:hover{transform:scale(1.05)}
-#backgroundModal input[type="color"]{margin-top:10px}
 .close-btn{background:#dc3545;color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;margin-top:15px}
-.close-btn:hover{background:#a71d2a}
 .daily-bg-btn{background:#0078d7;color:#fff;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;margin-top:10px}
-.daily-bg-btn:hover{background:#005fa3}
-</style>
+</style></style>
 <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "tk5k6vlyx4");
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "tk5k6vlyx4");
 </script>
-
+</head>
+<body>
 <div class="side-menu">
   <div class="top-buttons">
     <button onclick="showPage('home',this)"><img src="https://cdn-icons-png.flaticon.com/128/263/263115.png"><span>בית</span></button>
@@ -106,50 +83,30 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
     <button onclick="openBackgroundModal()"><img src="https://cdn-icons-png.flaticon.com/128/3342/3342137.png"><span>רקע</span></button>
   </div>
 </div>
-
 <div class="actions">
   <button class="save-btn" onclick="saveData()">💾 שמירה</button>
   <button class="cancel-btn" onclick="cancelEdit()">❌ ביטול</button>
 </div>
-
 <div class="search-container">
   <div class="search-box">
     <input type="text" id="searchInput" placeholder="אפשר לחפש בגוגל או להקליד כתובת אתר">
     <button onclick="searchGoogle()"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg" style="width:20px;height:20px"></button>
   </div>
 </div>
-
 <div id="home" class="page">
-  <div id="dateTimeBox" style="position:fixed; top:60px; left:20px; background:rgba(255,255,255,0.85); padding:10px 15px; border-radius:12px; font-family:Segoe UI, Arial, sans-serif; font-size:14px; box-shadow:0 2px 8px rgba(0,0,0,0.15); text-align:center; z-index:50;">
+  <div id="dateTimeBox" style="position:fixed; top:60px; left:20px; background:rgba(255,255,255,0.85); padding:10px 15px; border-radius:12px; font-size:14px; box-shadow:0 2px 8px rgba(0,0,0,0.15); text-align:center; z-index:50;">
     <div id="clock">00:00</div>
     <div id="date">01/01/2025</div>
   </div>
   <div style="margin-top:350px;">
-    <h3 style="margin:20px 0 20px; background:rgba(255,255,255,0.7); padding:8px 12px; border-radius:10px; width:fit-content; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
-      נפתחו לאחרונה
-    </h3>
+    <h3 style="margin:20px 0 20px; background:rgba(255,255,255,0.7); padding:8px 12px; border-radius:10px; width:fit-content; box-shadow:0 2px 6px rgba(0,0,0,0.1);">נפתחו לאחרונה</h3>
     <div class="recent-home" id="recentHomeSimple"></div>
   </div>
 </div>
-
 <div id="sites" class="page">
-  <div id="categoriesContainer">
-    <div class="category-box">
-      <h3 contenteditable="false">שימושי ונפוץ</h3>
-      <div class="cards-grid" id="usefulColumn"></div>
-      <button class="add-btn" onclick="addSite('useful')">+</button>
-      <button class="category-delete-btn" onclick="deleteCategory(this)">❌ מחיקה</button>
-    </div>
-    <div class="category-box">
-      <h3 contenteditable="false">חדשות / פנאי</h3>
-      <div class="cards-grid" id="funColumn"></div>
-      <button class="add-btn" onclick="addSite('fun')">+</button>
-      <button class="category-delete-btn" onclick="deleteCategory(this)">❌ מחיקה</button>
-    </div>
-  </div>
+  <div id="categoriesContainer"></div>
   <button class="add-btn" id="addCategoryBtn" style="display:none" onclick="addCategory()">+ קטגוריה</button>
 </div>
-
 <div id="extras" class="page">
   <div class="category-box">
     <h3>מוזיקה</h3>
@@ -158,13 +115,12 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
       <div class="frame"><iframe src="https://kol-play.co.il/"></iframe></div>
       <div class="frame"><iframe src="https://kcm.fm/Live/"></iframe></div>
     </div>
-    <div class="extras-container" style="margin-top:10px; display:flex; gap:10px;">
+    <div class="extras-container" style="margin-top:10px; gap:10px;">
       <div class="frame" style="flex:2;"><iframe src="https://www.hngn.co.il/"></iframe></div>
       <div class="frame" style="flex:1;"><iframe src="https://www.toker.fm/"></iframe></div>
     </div>
   </div>
 </div>
-
 <div id="historyPage" class="page">
   <div class="history-controls">
     <button onclick="deleteSelectedHistory()">מחק נבחרים</button>
@@ -172,7 +128,6 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
   </div>
   <div class="column" id="recentColumn"></div>
 </div>
-
 <div id="news" class="page">
   <div class="category-box">
     <h3>חדשות</h3>
@@ -182,8 +137,6 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
     </div>
   </div>
 </div>
-
-<!-- חלונית רקעים -->
 <div id="backgroundModal">
   <div class="modal-content">
     <h3>בחר רקע</h3>
@@ -194,16 +147,8 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
     <div class="bg-options">
       <img src="https://static.wixstatic.com/media/8cb7ea_bba48fe952e04722a76d58c6953b832b~mv2.png" onclick="setBackground(this.src)">
       <img src="https://reka.us/wp-content/uploads/2012/09/windows-8-forests-wallpapers-14.jpg" onclick="setBackground(this.src)">
-      <img src="https://www.prog.co.il/articles/%D7%90%D7%99%D7%9A-%D7%9E%D7%95%D7%A6%D7%90%D7%99%D7%9D-%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA-%D7%99%D7%A4%D7%95%D7%AA-%D7%9C%D7%94%D7%95%D7%A8%D7%93%D7%94-%D7%91%D7%97%D7%99%D7%A0%D7%9D-%D7%9E%D7%91%D7%9C%D7%99-%D7%9C%D7%94%D7%A4%D7%A8-%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA-%D7%99%D7%95%D7%A6%D7%A8%D7%99%D7%9ם.2862/cover-image?t=1663607458" onclick="setBackground(this.src)">
       <img src="https://a-static.besthdwallpaper.com/beautiful-sunset-view-background-wallpaper-1920x1200-11520_6.jpg" onclick="setBackground(this.src)">
       <img src="https://www.photo-art.co.il/wp-content/uploads/2015/06/BY1A65881.jpg" onclick="setBackground(this.src)">
-      <img src="https://i.pinimg.com/originals/06/41/e9/0641e9a7870e93edcb1eb4eb8592aa95.jpg" onclick="setBackground(this.src)">
-      <img src="https://www.prog.co.il/attachments/1-png.642534/" onclick="setBackground(this.src)">
-      <img src="https://s3.prog.co.il/data/attachments/642/642304-2be58d64764f9a650d3ad36e8a6d5b09.jpg" onclick="setBackground(this.src)">
-      <img src="https://www.prog.co.il/attachments/61-jpg.642512/" onclick="setBackground(this.src)">
-      <img src="https://www.prog.co.il/attachments/74-jpg.642513/" onclick="setBackground(this.src)">
-      <img src="https://www.prog.co.il/attachments/18-jpg.642545/" onclick="setBackground(this.src)">
-      <img src="https://www.prog.co.il/attachments/15-jpg.642544/" onclick="setBackground(this.src)">
     </div>
     <h4>בחר צבע:</h4>
     <input type="color" id="bgColorPicker" onchange="setBackgroundColor(this.value)">
@@ -213,53 +158,210 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
     <button class="close-btn" onclick="closeBackgroundModal()">סגור</button>
   </div>
 </div>
-
 <script>
-// --- נתוני ברירת מחדל ---
-const defaultData={useful:[{name:"Google",url:"https://www.google.com",icon:"https://www.google.com/favicon.ico"},{name:"YouTube",url:"https://www.youtube.com",icon:"https://www.youtube.com/favicon.ico"}],fun:[{name:"Netflix",url:"https://www.netflix.com",icon:"https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.png"},{name:"Twitch",url:"https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png"}],recent:[]};
-let data=JSON.parse(localStorage.getItem("shortcuts"))||defaultData,editMode=false;
-const savedBackground=localStorage.getItem("backgroundURL");if(savedBackground)document.body.style.background=savedBackground;
-
-// --- רקע ---
+const STORAGE_KEY = "shortcuts";
+const defaultData = {
+  categories: [
+    { id: "useful", title: "שימושי ונפוץ", sites: [{name:"Google",url:"https://www.google.com",icon:"https://www.google.com/favicon.ico"},{name:"YouTube",url:"https://www.youtube.com",icon:"https://www.youtube.com/favicon.ico"}]},
+    { id: "fun", title: "חדשות / פנאי", sites: [{name:"Netflix",url:"https://www.netflix.com",icon:"https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.png"},{name:"Twitch",url:"https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png"}]}
+  ],
+  recent: []
+};
+let data = loadData();
+let editMode = false;
+/* רקע */
+const savedBackground = localStorage.getItem("backgroundURL");
+if (savedBackground) document.body.style.background = savedBackground;
 function openBackgroundModal(){document.getElementById("backgroundModal").style.display="flex"}
 function closeBackgroundModal(){document.getElementById("backgroundModal").style.display="none"}
 function setBackground(url){document.body.style.background=`url('${url}') center/cover no-repeat`;localStorage.setItem("backgroundURL",`url('${url}') center/cover no-repeat`);localStorage.setItem("dailyBgEnabled","false")}
 function setBackgroundColor(color){document.body.style.background=color;localStorage.setItem("backgroundURL",color);localStorage.setItem("dailyBgEnabled","false")}
 function applyBackgroundUrl(){const url=document.getElementById("bgUrlInput").value.trim();if(url){setBackground(url)}}
-function uploadBackground(input){if(input.files && input.files[0]){const reader=new FileReader();reader.onload=e=>setBackground(e.target.result);reader.readAsDataURL(input.files[0])}}
-
-// החלפה יומית של רקעים
-const savedDailyBg=localStorage.getItem("dailyBgEnabled")==="true";
+function uploadBackground(input){if(input.files&&input.files[0]){const reader=new FileReader();reader.onload=e=>setBackground(e.target.result);reader.readAsDataURL(input.files[0])}}
 const bgImages=[...document.querySelectorAll("#backgroundModal .bg-options img")].map(img=>img.src);
 function toggleDailyBackground(){const isEnabled=localStorage.getItem("dailyBgEnabled")==="true";localStorage.setItem("dailyBgEnabled",!isEnabled);alert(!isEnabled?"החלפת רקעים יומית מופעלת":"החלפת רקעים יומית כבויה")}
 function applyDailyBackground(){if(localStorage.getItem("dailyBgEnabled")==="true" && bgImages.length>0){const today=Math.floor(new Date().getTime()/(1000*60*60*24));const index=today%bgImages.length;setBackground(bgImages[index])}}
 applyDailyBackground();
-
-// --- פונקציות קיימות ---
-function renderCards(section,columnId){const col=document.getElementById(columnId);col.innerHTML="";data[section].forEach((site,index)=>{const card=document.createElement("div");card.className="card";card.draggable=editMode;card.dataset.index=index;if(editMode){card.classList.add("editing");card.innerHTML=`<input value="${site.name}" placeholder="שם"><input value="${site.url}" placeholder="כתובת"><input value="${site.icon}" placeholder="כתובת אייקון">`;const delBtn=document.createElement("button");delBtn.textContent="מחיקה";delBtn.className="delete-btn";delBtn.onclick=e=>{e.stopPropagation();data[section].splice(index,1);renderCards(section,columnId)};card.appendChild(delBtn);card.addEventListener("dragstart",e=>{e.dataTransfer.setData("text/plain",index)});col.addEventListener("dragover",e=>{e.preventDefault()});col.addEventListener("drop",e=>{e.preventDefault();const fromIndex=e.dataTransfer.getData("text/plain"),toIndex=index;if(fromIndex!==toIndex){const moved=data[section].splice(fromIndex,1)[0];data[section].splice(toIndex,0,moved);renderCards(section,columnId)}})}else{card.onclick=()=>{window.open(site.url,"_blank");addRecent(section,index)};card.innerHTML=`<img src="${site.icon||getFavicon(site.url)}"><a>${site.name}</a>`}col.appendChild(card)})}
-
-// פונקציה שמקבלת פייביקון מהדומיין אם לא קיים אייקון
-function getFavicon(url){try{const u=new URL(url);return u.origin+"/favicon.ico"}catch(e){return "https://via.placeholder.com/32"}}
-
-function renderHistory(){const col=document.getElementById("recentColumn");col.innerHTML="";data.recent.forEach((site,index)=>{const item=document.createElement("div");item.className="history-item";item.dataset.index=index;item.innerHTML=`<input type="checkbox" class="history-select" style="margin-left:5px"><img src="${site.icon||getFavicon(site.url)}"><a href="${site.url}" target="_blank">${site.name}</a><button class="remove-item" onclick="deleteHistoryItem(${index})">X</button>`;col.appendChild(item)})}
-function deleteHistoryItem(index){data.recent.splice(index,1);localStorage.setItem("shortcuts",JSON.stringify(data));renderHistory()}
-function deleteSelectedHistory(){const selected=document.querySelectorAll(".history-select:checked");const indexes=[...selected].map(cb=>cb.parentElement.dataset.index).sort((a,b)=>b-a);indexes.forEach(i=>data.recent.splice(i,1));localStorage.setItem("shortcuts",JSON.stringify(data));renderHistory()}
-function clearHistory(){if(confirm("למחוק את כל ההיסטוריה?")){data.recent=[];localStorage.setItem("shortcuts",JSON.stringify(data));renderHistory()}}
-function renderRecentHome(){const col=document.getElementById("recentHomeSimple");col.innerHTML="";data.recent.slice(0,6).forEach(site=>{const card=document.createElement("div");card.className="card";card.innerHTML=`<img src="${site.icon||getFavicon(site.url)}"><a>${site.name}</a>`;card.onclick=()=>window.open(site.url,"_blank");col.appendChild(card)})}
-function render(){renderCards("useful","usefulColumn");renderCards("fun","funColumn");renderHistory();renderRecentHome();document.querySelectorAll(".add-btn").forEach(btn=>btn.style.display=editMode?"block":"none");document.getElementById("addCategoryBtn").style.display=editMode?"block":"none";document.querySelectorAll("#categoriesContainer h3").forEach(h=>h.contentEditable=editMode);document.querySelectorAll(".category-delete-btn").forEach(btn=>btn.style.display=editMode?"block":"none")}
-function addRecent(section,index){const site={...data[section][index]};site.time=new Date().toLocaleString("he-IL");data.recent=data.recent.filter(s=>s.url!==site.url);data.recent.unshift(site);data.recent=data.recent.slice(0,40);localStorage.setItem("shortcuts",JSON.stringify(data));renderHistory();renderRecentHome()}
-function showPage(pageId,btn){document.querySelectorAll(".page").forEach(p=>p.style.display="none");document.getElementById(pageId).style.display="flex";document.querySelectorAll(".side-menu .top-buttons button").forEach(b=>b.classList.remove("active"));if(btn)btn.classList.add("active");localStorage.setItem("lastPage",pageId);const editBtn=document.getElementById("editBtn");if(pageId==="sites"){editBtn.style.display="flex"}else{editMode&&toggleEdit();editBtn.style.display="none"}}
-function toggleEdit(){editMode=!editMode;document.querySelector(".save-btn").style.visibility=editMode?"visible":"hidden";document.querySelector(".cancel-btn").style.visibility=editMode?"visible":"hidden";render()}
-function saveData(){["useful","fun"].forEach(section=>{const col=document.getElementById(section==="useful"?"usefulColumn":"funColumn");col.querySelectorAll(".card").forEach((card,index)=>{if(editMode){const inputs=card.querySelectorAll("input");if(inputs.length===3){data[section][index].name=inputs[0].value.trim()||"שם חדש";data[section][index].url=inputs[1].value.trim()||"https://";data[section][index].icon=inputs[2].value.trim()||getFavicon(inputs[1].value.trim())}}})});document.querySelectorAll("#categoriesContainer h3").forEach(h=>h.textContent=h.textContent.trim());localStorage.setItem("shortcuts",JSON.stringify(data));toggleEdit()}
-function cancelEdit(){data=JSON.parse(localStorage.getItem("shortcuts"))||defaultData;toggleEdit()}
-function addSite(section){data[section].push({name:"חדש",url:"https://",icon:""});render()}
-function addCategory(){const container=document.getElementById("categoriesContainer");const newCat=document.createElement("div");newCat.className="category-box";newCat.innerHTML=`<h3 contenteditable="true">קטגוריה חדשה</h3><div class="cards-grid"></div><button class="add-btn" onclick="addSite('new')">+</button><button class="category-delete-btn" onclick="deleteCategory(this)">❌ מחיקה</button>`;container.appendChild(newCat)}
-function deleteCategory(btn){if(confirm("למחוק קטגוריה זו?")){btn.parentElement.remove()}}
-function searchGoogle(){const input=document.getElementById("searchInput").value.trim();if(input){if(input.startsWith("http://")||input.startsWith("https://"))window.open(input,"_self");else if(input.includes("."))window.open("https://"+input,"_self");else window.open("https://www.google.com/search?q="+encodeURIComponent(input),"_self")}}
-document.getElementById("searchInput").addEventListener("keydown", function(e){if(e.key==="Enter"){searchGoogle();}});
-const lastPage=localStorage.getItem("lastPage")||"home";showPage(lastPage,document.querySelector(`.side-menu button[onclick*="${lastPage}"]`));render();
-function updateDateTime(){const now=new Date();const optionsDate={day:'2-digit',month:'2-digit',year:'numeric'};const optionsDay={weekday:'long'};document.getElementById("clock").textContent=now.toLocaleTimeString("he-IL",{hour:'2-digit',minute:'2-digit'});document.getElementById("date").textContent=now.toLocaleDateString("he-IL",optionsDay)+" | "+now.toLocaleDateString("he-IL",optionsDate)}
-setInterval(updateDateTime,1000);updateDateTime();
+/* ======= אחסון וטעינה ======= */
+function loadData(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return JSON.parse(JSON.stringify(defaultData));
+  try{
+    const parsed = JSON.parse(raw);
+    if (parsed && Array.isArray(parsed.categories)) return parsed;
+    if (parsed && typeof parsed === "object") {
+      const categories = [];
+      Object.keys(parsed).forEach(k=>{
+        if (k==="recent") return;
+        if (Array.isArray(parsed[k])) categories.push({id:k, title:k, sites: parsed[k]});
+      });
+      return { categories: categories.length>0 ? categories : defaultData.categories, recent: parsed.recent || [] };
+    }
+  }catch(e){console.warn("שגיאה בטעינת ה־localStorage, נטען ברירת מחדל",e);}
+  return JSON.parse(JSON.stringify(defaultData));
+}
+function persistData(){try{localStorage.setItem(STORAGE_KEY, JSON.stringify(data));}catch(e){console.error("שגיאה בשמירה:",e);alert("שגיאה בשמירה ל־localStorage.");}}
+/* ======= רינדור ======= */
+function render(){
+  renderCategories();
+  renderHistory();
+  renderRecentHome();
+  const isEditing = editMode ? "block" : "none";
+  document.getElementById("addCategoryBtn").style.display = isEditing;
+  document.querySelector(".save-btn").style.visibility = editMode ? "visible" : "hidden";
+  document.querySelector(".cancel-btn").style.visibility = editMode ? "visible" : "hidden";
+}
+function renderCategories(){
+  const container = document.getElementById("categoriesContainer");
+  container.innerHTML = "";
+  data.categories.forEach(cat => {
+    const catBox = document.createElement("div");
+    catBox.className = "category-box";
+    catBox.dataset.key = cat.id;
+    const columnId = cat.id + "Column";
+    catBox.innerHTML = `<h3 ${editMode ? 'contenteditable="true"' : ''}>${escapeHtml(cat.title)}</h3><div class="cards-grid" id="${columnId}"></div><button class="add-btn">+</button><button class="category-delete-btn">❌ מחיקה</button>`;
+    container.appendChild(catBox);
+    const addBtn = catBox.querySelector(".add-btn");
+    const delBtn = catBox.querySelector(".category-delete-btn");
+    addBtn.style.display = editMode ? "block" : "none";
+    delBtn.style.display = editMode ? "block" : "none";
+    addBtn.onclick = () => addSite(cat.id);
+    delBtn.onclick = () => deleteCategoryById(cat.id);
+    renderCards(cat.id, columnId);
+  });
+}
+function renderCards(categoryId, columnId){
+  const col = document.getElementById(columnId);
+  col.innerHTML = "";
+  const category = data.categories.find(c => c.id === categoryId);
+  if (!category) return;
+  category.sites.forEach((site, index) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.draggable = editMode;
+    card.dataset.index = index;
+    if (editMode) {
+      card.classList.add("editing");
+      card.innerHTML = `<input value="${escapeHtml(site.name)}" placeholder="שם"><input value="${escapeHtml(site.url)}" placeholder="כתובת"><input value="${escapeHtml(site.icon||'')}" placeholder="כתובת אייקון">`;
+      const delBtn = document.createElement("button");
+      delBtn.textContent = "מחיקה"; delBtn.className = "delete-btn";
+      delBtn.onclick = (e) => { e.stopPropagation(); category.sites.splice(index,1); render(); };
+      card.appendChild(delBtn);
+      card.addEventListener("dragstart", e => { e.dataTransfer.setData("text/plain", `${categoryId}|${index}`); });
+      card.addEventListener("dragover", e => e.preventDefault());
+      card.addEventListener("drop", e => {
+        e.preventDefault();
+        const [fromCatId, fromIdxStr] = e.dataTransfer.getData("text/plain").split("|");
+        const fromIdx = parseInt(fromIdxStr);
+        const toIdx = index;
+        if (isNaN(fromIdx)) return;
+        const fromCat = data.categories.find(c=>c.id===fromCatId);
+        if (!fromCat) return;
+        const moved = fromCat.sites.splice(fromIdx,1)[0];
+        category.sites.splice(fromCatId === categoryId && fromIdx < toIdx ? toIdx : toIdx,0,moved);
+        render();
+      });
+    } else {
+      card.onclick = () => { window.open(site.url, "_blank"); addRecent(categoryId, index); };
+      const img = document.createElement("img"); img.src = site.icon || getFavicon(site.url);
+      const a = document.createElement("a"); a.textContent = site.name;
+      card.appendChild(img); card.appendChild(a);
+    }
+    col.appendChild(card);
+  });
+}
+/* ======= היסטוריה וריסנט ======= */
+function renderHistory(){
+  const col = document.getElementById("recentColumn");
+  col.innerHTML = (data.recent || []).map((site, index) => `<div class="history-item" data-index="${index}"><input type="checkbox" class="history-select" style="margin-left:5px"><img src="${site.icon || getFavicon(site.url)}"><a href="${site.url}" target="_blank">${escapeHtml(site.name)}</a><button class="remove-item" onclick="deleteHistoryItem(${index})">X</button></div>`).join("");
+}
+function deleteHistoryItem(index){ data.recent.splice(index,1); persistData(); renderHistory(); renderRecentHome(); }
+function deleteSelectedHistory(){
+  const indexes = [...document.querySelectorAll(".history-select:checked")].map(cb => parseInt(cb.parentElement.dataset.index)).filter(i=>!isNaN(i)).sort((a,b)=>b-a);
+  indexes.forEach(i => data.recent.splice(i,1));
+  persistData(); renderHistory(); renderRecentHome();
+}
+function clearHistory(){ if(confirm("למחוק את כל ההיסטוריה?")){ data.recent=[]; persistData(); renderHistory(); renderRecentHome(); } }
+function renderRecentHome(){
+  const col = document.getElementById("recentHomeSimple");
+  col.innerHTML = (data.recent || []).slice(0,6).map(site => `<div class="card" onclick="window.open('${site.url}', '_blank')"><img src="${site.icon || getFavicon(site.url)}"><a>${escapeHtml(site.name)}</a></div>`).join("");
+}
+/* ======= פעולות קטגוריות ואתרים ======= */
+function addSite(categoryId){const cat = data.categories.find(c=>c.id===categoryId);if (!cat) return;cat.sites.push({name:"חדש",url:"https://",icon:""});render();}
+function addCategory(){const uniqueId = "cat" + Date.now();data.categories.push({ id: uniqueId, title: "קטגוריה חדשה", sites: [] });render();if (!editMode) toggleEdit();}
+function deleteCategoryById(categoryId){if (!confirm("למחוק קטגוריה זו?")) return;data.categories = data.categories.filter(c=>c.id!==categoryId);persistData();render();}
+/* ======= שמירה וביטול ======= */
+function saveData(){
+  const newCategories = [...document.querySelectorAll("#categoriesContainer .category-box")].map(domCat => {
+    const id = domCat.dataset.key;
+    const title = (domCat.querySelector("h3") && domCat.querySelector("h3").textContent.trim()) || "קטגוריה";
+    const sites = [...domCat.querySelectorAll(".card")].map(card => {
+        const inputs = card.querySelectorAll("input");
+        const url = inputs[1].value.trim() || "https://";
+        return {name:inputs[0].value.trim()||"שם חדש",url:url,icon:inputs[2].value.trim()||getFavicon(url)};
+    });
+    return { id, title, sites };
+  });
+  data.categories = newCategories;
+  persistData();
+  toggleEdit();
+}
+function cancelEdit(){data = loadData();if (editMode) toggleEdit();render();}
+/* ======= עזרי ניווט וחיפוש ======= */
+function showPage(pageId, btn){
+  document.querySelectorAll(".page").forEach(p => p.style.display = "none");
+  document.getElementById(pageId).style.display = "flex";
+  document.querySelectorAll(".side-menu .top-buttons button").forEach(b => b.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+  localStorage.setItem("lastPage", pageId);
+  const editBtn = document.getElementById("editBtn");
+  if (pageId === "sites") { editBtn.style.display = "flex"; }
+  else { if (editMode) toggleEdit(); editBtn.style.display = "none"; }
+}
+function searchGoogle(){
+  const input = document.getElementById("searchInput").value.trim();
+  if (!input) return;
+  const url = (input.startsWith("http://") || input.startsWith("https://")) ? input : (input.includes(".") ? "https://"+input : "https://www.google.com/search?q="+encodeURIComponent(input));
+  window.open(url, "_self");
+}
+document.getElementById("searchInput").addEventListener("keydown", function(e){ if (e.key === "Enter") searchGoogle(); });
+/* ======= היסטוריית לחיצות ======= */
+function addRecent(categoryId, index){
+  const cat = data.categories.find(c=>c.id===categoryId);
+  if (!cat || !cat.sites[index]) return;
+  const site = {...cat.sites[index], time: new Date().toLocaleString("he-IL")};
+  data.recent = data.recent.filter(s => s.url !== site.url);
+  data.recent.unshift(site);
+  data.recent = data.recent.slice(0,40);
+  persistData();
+  renderHistory();
+  renderRecentHome();
+}
+/* ======= מצב עריכה ======= */
+function toggleEdit(){
+  editMode = !editMode;
+  document.querySelectorAll("#categoriesContainer h3").forEach(h=>h.contentEditable = editMode);
+  document.getElementById("addCategoryBtn").style.display = editMode ? "block" : "none";
+  document.querySelector(".save-btn").style.visibility = editMode ? "visible" : "hidden";
+  document.querySelector(".cancel-btn").style.visibility = editMode ? "visible" : "hidden";
+  render();
+}
+/* ======= עזרי UI ======= */
+function getFavicon(url){try{ return new URL(url).origin + "/favicon.ico"; }catch(e){ return "https://via.placeholder.com/32"; }}
+function escapeHtml(str){if (str===undefined || str===null) return "";return String(str).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/'/g,"&#39;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+/* ======= תאריך ושעה ======= */
+function updateDateTime(){
+  const now = new Date();
+  const optionsDate = {day:'2-digit',month:'2-digit',year:'numeric'};
+  const optionsDay = {weekday:'long'};
+  document.getElementById("clock").textContent = now.toLocaleTimeString("he-IL",{hour:'2-digit',minute:'2-digit'});
+  document.getElementById("date").textContent = now.toLocaleDateString("he-IL",optionsDay) + " | " + now.toLocaleDateString("he-IL",optionsDate);
+}
+setInterval(updateDateTime,1000); updateDateTime();
+/* ======= התחלה ======= */
+const lastPage = localStorage.getItem("lastPage") || "home";
+showPage(lastPage, document.querySelector(`.side-menu button[onclick*="${lastPage}"]`));
+render();
 </script>
-</body> 
+</body>
 </html>
