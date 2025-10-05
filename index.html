@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="he" dir="rtl"><head>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
 <meta name="google-site-verification" content="EX3cQJimgpW0qustR180xDtT-Sk70hGhW2pBQZxUxwk" />
 <meta charset="UTF-8">
 <title>דּף הַבַּיִת</title>
@@ -17,7 +19,18 @@
 <meta name="twitter:title" content="דּף הַבַּיִת">
 <meta name="twitter:description" content="דף הבית הנח ביותר, עם קישורים שימושיים, חיפוש בגוגל ותוכן עדכני.">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QMBFDT1EWD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QMBFDT1EWD');
+</script>
+
 <style>
+/* סגנונות כלליים וסרגל צד */
 body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding:0 20px 20px;direction:rtl;min-height:100vh;color:#333;display:flex;flex-direction:column}
 .side-menu{position:fixed;top:0;right:0;width:80px;height:100vh;background:#fff;box-shadow:-2px 0 10px rgba(0,0,0,0.15);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px 0;z-index:20}
 .side-menu .top-buttons,.side-menu .bottom-button{display:flex;flex-direction:column;gap:15px}
@@ -39,7 +52,7 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
 .page{display:none;margin-top:70px;margin-right:100px;flex:1;flex-direction:column}
 #home{display:flex;flex-direction:column}
 #categoriesContainer{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.category-box{background:rgba(255,255,255,.7);padding:15px;margin-bottom:0px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);position:relative}
+.category-box{background:rgba(255,255,255,.7);padding:15px;margin-bottom:20px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);position:relative}
 .home-content-box{background:rgba(255,255,255,.7);padding:15px;margin-bottom:20px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);position:relative;width:fit-content;max-width:100%}
 .category-box h3{margin:0 0 15px;padding:5px 10px;border-radius:4px;transition:background 0.2s}
 .category-box h3[contenteditable="true"]{background:#e3f2fd;border:1px dashed #0078d7;cursor:text}
@@ -48,43 +61,53 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
 .card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.12)}
 .card img{width:40px;height:40px;object-fit:contain;margin-bottom:5px}
 .card a{font-size:.75em;color:#0078d7;text-decoration:none;font-weight:600;word-break:break-word}
-.card.editing{background:#fff;border:2px solid #0078d7;box-shadow:0 4px 12px rgba(0,120,215,0.3);padding:8px;height:auto;min-height:140px;justify-content:center;gap:4px}
-.card.editing input{width:100%;margin:3px 0;padding:6px;border-radius:4px;border:1px solid #aaa;font-size:.8em;text-align:center;font-weight:500}
-.card.editing input:focus{border-color:#005fa3;box-shadow:0 0 5px rgba(0,95,163,0.5);outline:none}
+
+/* סגנונות חדשים/מעודכנים לעריכה ללא שינוי צורת כרטיס */
+.card.editing{background:#f0f2f5;border:none;box-shadow:none;padding:10px;height:auto;min-height:auto;justify-content:center;gap:0;}
 .delete-btn{position:absolute;top:-5px;left:-5px;background:#dc3545;color:#fff;font-size:.7em;padding:4px 6px;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-weight:900;line-height:1;z-index:10;border:2px solid #fff}
 .delete-btn:hover{background:#a71d2a;transform:scale(1.1)}
-.category-box .add-btn{width:100%;border-radius:8px;margin:15px 0 5px 0;padding:8px;height:auto;font-size:1em;font-weight:600}
+.category-box .add-btn{width:100%;border-radius:8px;margin:15px 0 5px 0;padding:8px;height:auto;font-size:1em;font-weight:600;background:#0078d7;color:#fff;border:none;cursor:pointer;}
 .category-box .add-btn:hover{background:#005fa3;transform:translateY(-1px)}
 #addCategoryBtn{background:#28a745;color:#fff;border:none;border-radius:8px;width:250px;height:auto;padding:12px 20px;font-size:1.1em;font-weight:bold;margin:30px auto;box-shadow:0 4px 10px rgba(40,167,69,0.4);transition:.2s}
 #addCategoryBtn:hover{background:#1e7e34;transform:translateY(-2px);box-shadow:0 6px 15px rgba(40,167,69,0.6)}
 .category-delete-btn{position:absolute;top:10px;left:10px;background:#dc3545;color:#fff;border:none;padding:6px 10px;border-radius:8px;font-size:.85em;font-weight:bold;cursor:pointer;display:none;z-index:10;transition:.2s;box-shadow:0 2px 4px rgba(0,0,0,0.2)}
 .category-delete-btn:hover{background:#a71d2a;transform:translateY(-1px)}
-.add-btn{background:#0078d7;color:#fff;border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;font-size:1.5em;font-weight:bold;margin:10px auto;display:none}
-.add-btn:hover{background:#005fa3}
-.history-item{background:rgba(255,255,255,.7);padding:10px 15px;border-radius:8px;border-bottom:1px solid #ddd;display:flex;align-items:center;gap:10px;position:relative}
-.history-item img{width:24px;height:24px;border-radius:4px;object-fit:cover}
-.history-item a{color:#0078d7;text-decoration:none;font-weight:600;flex:1}
-.history-item .remove-item{background:#dc3545;color:#fff;border:none;padding:2px 6px;border-radius:4px;cursor:pointer;margin-left:10px}
+.category-box .add-btn{display:none;} 
+.category-box .add-btn-modal{width:100%;border-radius:8px;margin:15px 0 5px 0;padding:8px;height:auto;font-size:1em;font-weight:600;background:#0078d7;color:#fff;border:none;cursor:pointer; display:none;} /* כפתור הוספה חדש שמוצג רק בעריכה */
+.category-box .add-btn-modal:hover{background:#005fa3;transform:translateY(-1px)}
+/* החזרת הסגנון המקורי של נפתחו לאחרונה בתוך דף הבית */
 .recent-home{margin-top:-0px;display:flex;gap:10px;z-index:15}
 .recent-home .card{width:65px;height:75px;padding:3px}
 .recent-home .card img{width:30px;height:30px}
 .recent-home .card a{font-size:0.65em}
+/* סוף סגנון נפתחו לאחרונה */
+
 .extras-container{display:flex;gap:15px;height:76vh}
-/* הוספת סגנונות חדשים למסגרת ה-iframe ולכפתורים מעליה */
+/* סגנונות IFRAME */
 .frame{flex:1;margin:0;border-radius:15px;overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,0.2);background:#fff;position:relative; padding-top: 30px;}
 .frame iframe{width:100%;height:100%;border:none; margin-top: 5px;}
-.frame-actions{position:absolute; top: 0px; right: 0px; display:flex; gap:5px; z-index:5; background: #e9ecef; padding: 5px 10px; border-bottom-left-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);} /* רקע אפור בהיר למלבן הכולל */
-.frame-actions button{background:#e9ecef; color:#333; border:none; padding:4px 7px; border-radius:6px; cursor:pointer; font-size:0.85em; transition:.2s; line-height:1} /* כפתורים עצמם עם רקע אפור בהיר */
+.frame-actions{position:absolute; top: 0px; right: 0px; display:flex; gap:5px; z-index:5; background: #e9ecef; padding: 5px 10px; border-bottom-left-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+.frame-actions button{background:#e9ecef; color:#333; border:none; padding:4px 7px; border-radius:6px; cursor:pointer; font-size:0.85em; transition:.2s; line-height:1}
 .frame-actions button:hover{background:#0078d7; color:#fff; transform:scale(1.05)}
 .frame-actions button:nth-child(2){font-size:0.95em;}
-/* סוף סגנונות חדשים */
-
 /* סגנון חלון מודאלי להצגה מורחבת */
 #modalIframe{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0, 0, 0, 0.7);display:none;justify-content:center;align-items:center;z-index:9999}
 #modalIframe .modal-content-iframe{width:90%;height:90%;background:#fff;border-radius:12px;overflow:hidden;position:relative;box-shadow: 0 0 50px rgba(0,0,0,0.9);}
 #modalIframe iframe{width:100%;height:100%;border:none}
 #modalIframe .close-modal-iframe{position:absolute;top:10px;left:10px;background:#dc3545;color:#fff;border:none;padding:8px 15px;border-radius:8px;cursor:pointer;font-weight:bold;z-index:10000}
-/* סוף סגנון חלון מודאלי */
+/* סגנון חלון מודאלי לעריכת אתר - חדש */
+#editModal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center;z-index:300}
+#editModal .modal-content{background:#fff;padding:25px;border-radius:12px;width:90%;max-width:400px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,0.3);position:relative}
+#editModal h3{margin-top:0; color:#0078d7;}
+#editModal input{width:100%;padding:10px;margin-bottom:15px;border:1px solid #ccc;border-radius:8px;font-size:1em;box-sizing:border-box}
+#editModal button{padding:10px 15px;border:none;border-radius:8px;cursor:pointer;font-weight:bold;transition:.2s;margin:0 5px}
+#editModal #saveSiteBtn{background:#28a745;color:#fff;}
+#editModal #saveSiteBtn:hover{background:#1e7e34;transform:translateY(-1px)}
+#editModal #cancelSiteBtn{background:#dc3545;color:#fff;}
+#editModal #cancelSiteBtn:hover{background:#a71d2a;transform:translateY(-1px)}
+#editModal #deleteSiteBtn{background:#f0ad4e;color:#fff;margin-top:10px;}
+#editModal #deleteSiteBtn:hover{background:#ec971f;transform:translateY(-1px)}
+/* סוף סגנון חלון מודאלי לעריכת אתר */
 #historyPage{display:flex;flex-direction:column;gap:20px}
 .history-controls{display:flex;gap:10px;margin-bottom:10px;padding:10px;background:rgba(255,255,255,0.85);border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.15);align-self:flex-start}
 .history-controls button{padding:8px 15px;border:none;border-radius:8px;cursor:pointer;font-weight:bold;transition:0.15s;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
@@ -92,6 +115,24 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
 .history-controls button:first-child:hover{background:#005fa3;transform:translateY(-1px)}
 .history-controls button:last-child{background:#dc3545;color:#fff}
 .history-controls button:last-child:hover{background:#a71d2a;transform:translateY(-1px)}
+/* סגנון חלונית הסבר במצב עריכה */
+#edit-tip-box {
+    background: #fff3cd; /* צהוב בהיר */
+    color: #856404; /* צבע טקסט כהה */
+    border: 1px solid #ffeeba;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: none; /* מוסתר כברירת מחדל */
+}
+#edit-tip-box strong {
+    color: #c08709;
+}
+/* סוף סגנון חלונית הסבר */
+
 @media(max-width:900px){.cards-grid{grid-template-columns:repeat(auto-fill,minmax(60px,1fr))}.card img{width:30px;height:30px}.extras-container{flex-direction:column;height:auto}}
 #backgroundModal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center;z-index:100}
 #backgroundModal .modal-content{background:#fff;padding:20px;border-radius:12px;width:80%;max-width:600px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
@@ -139,8 +180,12 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
 <h3 style="margin:0 0 15px; background:none; padding:0; box-shadow:none; font-size:1.1em; width:100%; text-align:right;">נפתחו לאחרונה</h3>
 <div class="recent-home" id="recentHomeSimple"></div>
 </div>
-</div></div>
+</div>
+</div>
 <div id="sites" class="page">
+<div id="edit-tip-box">
+    הסבר קצר: להוספת קטגורייה לחצו על 'הוספת קטגורייה' למטה. לעריכת אתר פשוט הקליקו עליו ויפתח חלונית ייעודית. להוספת אתר לקטגוריה לחצו על 'הוסף אתר' בתוך הקטגוריה. בסיום העריכה הקליקו על 💾 שמירה בצד ימין למעלה.
+</div>
 <div id="categoriesContainer"></div>
 <button class="add-btn" id="addCategoryBtn" style="display:none" onclick="addCategory()">+ קטגוריה</button>
 </div>
@@ -216,6 +261,7 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
 </div>
 </div>
 </div>
+
 <div id="backgroundModal">
 <div class="modal-content">
 <h3>בחר רקע</h3>
@@ -237,16 +283,36 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6fa;margin:0;padding
 <button class="close-btn" onclick="closeBackgroundModal()">סגור</button>
 </div>
 </div>
+
 <div id="modalIframe">
 <div class="modal-content-iframe">
 <button class="close-modal-iframe" onclick="closeModal()">סגור X</button>
 <iframe id="fullScreenIframe" src=""></iframe>
 </div>
 </div>
+
+<div id="editModal">
+<div class="modal-content">
+<h3 id="editModalTitle">עריכת אתר</h3>
+<input type="text" id="siteNameInput" placeholder="שם האתר">
+<input type="url" id="siteUrlInput" placeholder="כתובת (URL) האתר">
+<input type="url" id="siteIconInput" placeholder="אייקון (כתובת)">
+<div>
+<button id="saveSiteBtn">שמירה</button>
+<button id="cancelSiteBtn">ביטול</button>
+</div>
+<button id="deleteSiteBtn" style="display:none">מחיקת אתר</button>
+</div>
+</div>
 <script>
 const STORAGE_KEY="shortcuts";
 const defaultData={categories:[{id:"useful",title:"שימושי ונפוץ",sites:[{name:"Google",url:"https://www.google.com",icon:"https://www.google.com/favicon.ico"},{name:"אתר מזג אוויר",url:"https://www.weather.com",icon:"https://www.weather.com/favicon.ico"}]},{id:"news",title:"חדשות",sites:[{name:"JDN",url:"https://www.jdn.co.il/",icon:"https://www.jdn.co.il/favicon.ico"},{name:"בחדרי חרדים",url:"https://www.bhch.co.il/",icon:"https://www.bhch.co.il/favicon.ico"}]}],recent:[]};
-let data=loadData();let editMode=false;
+let data=loadData();
+let editMode=false;
+// משתנים גלובליים לשמירת מיקום האתר הנערך
+let currentEditCategoryId = null;
+let currentEditSiteIndex = null;
+
 const savedBackground=localStorage.getItem("backgroundURL");if(savedBackground)document.body.style.background=savedBackground;
 function openBackgroundModal(){document.getElementById("backgroundModal").style.display="flex"}
 function closeBackgroundModal(){document.getElementById("backgroundModal").style.display="none"}
@@ -278,8 +344,12 @@ function render(){
 renderCategories();renderHistory();renderRecentHome();
 const isEditing=editMode?"block":"none";
 document.getElementById("addCategoryBtn").style.display=isEditing;
-document.querySelector(".save-btn").style.visibility=editMode?"visible":"hidden";
-document.querySelector(".cancel-btn").style.visibility=editMode?"visible":"hidden";
+// עדכון הצגת חלונית ההסבר לעריכה
+const isSitesPage = document.getElementById('sites').style.display === 'flex';
+document.getElementById("edit-tip-box").style.display=(editMode && isSitesPage)?"block":"none";
+// כפתורי שמירה וביטול מוצגים רק אם במצב עריכה והדף הוא 'אתרים'
+document.querySelector(".save-btn").style.visibility=(editMode && isSitesPage)?"visible":"hidden";
+document.querySelector(".cancel-btn").style.visibility=(editMode && isSitesPage)?"visible":"hidden";
 }
 function renderCategories(){
 const container=document.getElementById("categoriesContainer");container.innerHTML="";
@@ -287,14 +357,13 @@ data.categories.forEach(cat=>{
 const catBox=document.createElement("div");
 catBox.className="category-box";catBox.dataset.key=cat.id;
 const columnId=cat.id+"Column";
-catBox.innerHTML=`<h3 ${editMode?'contenteditable="true"':''}>${escapeHtml(cat.title)}</h3><div class="cards-grid" id="${columnId}"></div><button class="add-btn">הוסף אתר</button><button class="category-delete-btn">❌ מחיקה</button>`;
+// עריכת שם הקטגוריה עכשיו אפשרית רק במצב עריכה
+catBox.innerHTML=`<h3 ${editMode?'contenteditable="true"':''}>${escapeHtml(cat.title)}</h3><div class="cards-grid" id="${columnId}"></div>
+<button class="add-btn-modal" style="display: ${editMode ? 'block' : 'none'};" onclick="openEditModal('${cat.id}', -1)">+ הוסף אתר</button>
+<button class="category-delete-btn" style="display: ${editMode ? 'block' : 'none'};">❌ מחיקה</button>`;
 container.appendChild(catBox);
-const addBtn=catBox.querySelector(".add-btn");
 const delBtn=catBox.querySelector(".category-delete-btn");
-addBtn.style.display=editMode?"block":"none";
-delBtn.style.display=editMode?"block":"none";
-addBtn.onclick=()=>addSite(cat.id);
-delBtn.onclick=()=>deleteCategoryById(cat.id);
+if(delBtn) delBtn.onclick=()=>deleteCategoryById(cat.id);
 renderCards(cat.id,columnId);
 });
 }
@@ -302,26 +371,19 @@ function renderCards(categoryId,columnId){
 const col=document.getElementById(columnId);col.innerHTML="";
 const category=data.categories.find(c=>c.id===categoryId);if(!category)return;
 category.sites.forEach((site,index)=>{
-const card=document.createElement("div");card.className="card";card.draggable=editMode;card.dataset.index=index;
+const card=document.createElement("div");card.className="card";card.dataset.index=index;
 if(editMode){
 card.classList.add("editing");
-card.innerHTML=`<input value="${escapeHtml(site.name)}" placeholder="שם"><input value="${escapeHtml(site.url)}" placeholder="כתובת"><input value="${escapeHtml(site.icon||'')}" placeholder="אופציה לאייקון">`;
+card.onclick=()=>openEditModal(categoryId,index);
+const img=document.createElement("img");img.src=site.icon||getFavicon(site.url);
+const a=document.createElement("a");a.textContent=site.name;
+card.appendChild(img);card.appendChild(a);
+
+// כפתור מחיקה מהירה ישירות על הכרטיס
 const delBtn=document.createElement("button");delBtn.textContent="X";delBtn.className="delete-btn";
-delBtn.onclick=(e)=>{e.stopPropagation();category.sites.splice(index,1);render();};
+delBtn.onclick=(e)=>{e.stopPropagation();deleteSite(categoryId, index, true);}; // true to skip confirm
 card.appendChild(delBtn);
-card.addEventListener("dragstart",e=>{e.dataTransfer.setData("text/plain",`${categoryId}|${index}`);});
-card.addEventListener("dragover",e=>e.preventDefault());
-card.addEventListener("drop",e=>{
-e.preventDefault();
-const [fromCatId,fromIdxStr]=e.dataTransfer.getData("text/plain").split("|");
-const fromIdx=parseInt(fromIdxStr);const toIdx=index;
-if(isNaN(fromIdx))return;
-const fromCat=data.categories.find(c=>c.id===fromCatId);
-if(!fromCat)return;
-const moved=fromCat.sites.splice(fromIdx,1)[0];
-category.sites.splice(fromCatId===categoryId&&fromIdx<toIdx?toIdx:toIdx,0,moved);
-render();
-});
+
 }else{
 card.onclick=()=>{window.open(site.url,"_blank");addRecent(categoryId,index);};
 const img=document.createElement("img");img.src=site.icon||getFavicon(site.url);
@@ -383,7 +445,7 @@ const col=document.getElementById("recentHomeSimple");
 const recentSites = (data.recent||[]).slice(0,6);
 if (recentSites.length === 0) {
 col.innerHTML = '<p style="text-align: center; color: #666; font-size: 1.1em; margin: 10px 0;">עדיין לא פתחת כלום 😊</p>';
-col.style.display = 'block';
+col.parentElement.style.display = 'block'; // מציג את home-content-box
 } else {
 const uniqueRecentSites = [];
 const urls = new Set();
@@ -395,22 +457,99 @@ uniqueRecentSites.push(site);
 }
 }
 col.innerHTML = uniqueRecentSites.map(site=>`<div class="card" onclick="window.open('${site.url}','_blank')"><img src="${site.icon||getFavicon(site.url)}"><a>${escapeHtml(site.name)}</a></div>`).join("");
-col.style.display = 'flex';
+col.parentElement.style.display = 'block'; // מציג את home-content-box
 }
 }
-function addSite(categoryId){const cat=data.categories.find(c=>c.id===categoryId);if(!cat)return;cat.sites.push({name:"חדש",url:"https://",icon:""});render();}
+
+// פונקציות עריכה/הוספה חדשות באמצעות מודאל
+function openEditModal(categoryId, index){
+    currentEditCategoryId = categoryId;
+    currentEditSiteIndex = index;
+    const cat = data.categories.find(c => c.id === categoryId);
+    if (!cat) return;
+
+    const modalTitle = document.getElementById('editModalTitle');
+    const nameInput = document.getElementById('siteNameInput');
+    const urlInput = document.getElementById('siteUrlInput');
+    const iconInput = document.getElementById('siteIconInput');
+    const deleteBtn = document.getElementById('deleteSiteBtn');
+
+    if (index === -1) { // הוספה חדשה
+        modalTitle.textContent = "הוספת אתר חדש";
+        nameInput.value = "";
+        urlInput.value = "https://";
+        iconInput.value = "";
+        deleteBtn.style.display = "none";
+    } else { // עריכת אתר קיים
+        const site = cat.sites[index];
+        modalTitle.textContent = "עריכת אתר";
+        nameInput.value = site.name;
+        urlInput.value = site.url;
+        iconInput.value = site.icon || "";
+        deleteBtn.style.display = "block";
+    }
+
+    document.getElementById("editModal").style.display = "flex";
+    nameInput.focus();
+}
+
+document.getElementById('saveSiteBtn').onclick = saveSiteFromModal;
+document.getElementById('cancelSiteBtn').onclick = closeEditModal;
+document.getElementById('deleteSiteBtn').onclick = () => {
+    if(currentEditCategoryId && currentEditSiteIndex !== null && currentEditSiteIndex !== -1) {
+        deleteSite(currentEditCategoryId, currentEditSiteIndex);
+    }
+    closeEditModal();
+};
+
+function closeEditModal(){
+    document.getElementById("editModal").style.display = "none";
+    currentEditCategoryId = null;
+    currentEditSiteIndex = null;
+}
+
+function saveSiteFromModal(){
+    const categoryId = currentEditCategoryId;
+    const index = currentEditSiteIndex;
+    const cat = data.categories.find(c => c.id === categoryId);
+    if (!cat) return;
+
+    const name = document.getElementById('siteNameInput').value.trim() || "שם חדש";
+    const url = document.getElementById('siteUrlInput').value.trim() || "https://";
+    const icon = document.getElementById('siteIconInput').value.trim() || getFavicon(url);
+
+    if (index === -1) { // הוספה
+        cat.sites.push({ name, url, icon });
+    } else { // עריכה
+        cat.sites[index] = { name, url, icon };
+    }
+
+    persistData();
+    render();
+    closeEditModal();
+}
+
+function deleteSite(categoryId, index, skipConfirm = false){
+    const cat = data.categories.find(c => c.id === categoryId);
+    if (!cat || index === -1) return;
+
+    if(skipConfirm || confirm(`למחוק את האתר ${cat.sites[index].name}?`)) {
+        cat.sites.splice(index, 1);
+        persistData();
+        render();
+    }
+}
+// סוף פונקציות עריכה/הוספה חדשות
+
 function addCategory(){const uniqueId="cat"+Date.now();data.categories.push({id:uniqueId,title:"קטגוריה חדשה",sites:[]});render();if(!editMode)toggleEdit();}
 function deleteCategoryById(categoryId){if(!confirm("למחוק קטגוריה זו?"))return;data.categories=data.categories.filter(c=>c.id!==categoryId);persistData();render();}
 function saveData(){
 const newCategories=[...document.querySelectorAll("#categoriesContainer .category-box")].map(domCat=>{
 const id=domCat.dataset.key;
 const title=(domCat.querySelector("h3")&&domCat.querySelector("h3").textContent.trim())||"קטגוריה";
-const sites=[...domCat.querySelectorAll(".card")].map(card=>{
-const inputs=card.querySelectorAll("input");
-const url=inputs[1].value.trim()||"https://";
-return{name:inputs[0].value.trim()||"שם חדש",url:url,icon:inputs[2].value.trim()||getFavicon(url)};
-});
-return{id,title,sites};
+// האתרים כבר מעודכנים ב-data.categories על ידי המודאל
+const categoryData = data.categories.find(c => c.id === id);
+return{id,title,sites: categoryData ? categoryData.sites : []};
 });
 data.categories=newCategories;persistData();toggleEdit();
 }
@@ -422,8 +561,14 @@ document.querySelectorAll(".side-menu .top-buttons button").forEach(b=>b.classLi
 if(btn)btn.classList.add("active");
 localStorage.setItem("lastPage",pageId);
 const editBtn=document.getElementById("editBtn");
-if(pageId==="sites"){editBtn.style.display="flex";}
+// הצג את כפתור העריכה רק עבור דף 'אתרים'
+const isSitesPage = pageId === 'sites';
+if(isSitesPage){editBtn.style.display="flex";}
 else{if(editMode)toggleEdit();editBtn.style.display="none";}
+// הצג/הסתר כפתורי שמירה/ביטול וחלונית הטיפ בהתאם
+document.getElementById("edit-tip-box").style.display=(editMode && isSitesPage)?"block":"none";
+document.querySelector(".save-btn").style.visibility=(editMode && isSitesPage)?"visible":"hidden";
+document.querySelector(".cancel-btn").style.visibility=(editMode && isSitesPage)?"visible":"hidden";
 }
 function searchGoogle(){
 const input=document.getElementById("searchInput").value.trim();
@@ -448,18 +593,21 @@ function toggleEdit(){
 editMode=!editMode;
 document.querySelectorAll("#categoriesContainer h3").forEach(h=>h.contentEditable=editMode);
 document.getElementById("addCategoryBtn").style.display=editMode?"block":"none";
-document.querySelector(".save-btn").style.visibility=editMode?"visible":"hidden";
-document.querySelector(".cancel-btn").style.visibility=editMode?"visible":"hidden";
+const isSitesPage = document.getElementById('sites').style.display === 'flex';
+// עדכון הצגת חלונית ההסבר לעריכה
+document.getElementById("edit-tip-box").style.display=(editMode && isSitesPage)?"block":"none";
+document.querySelector(".save-btn").style.visibility=(editMode && isSitesPage)?"visible":"hidden";
+document.querySelector(".cancel-btn").style.visibility=(editMode && isSitesPage)?"visible":"hidden";
 render();
 }
 // פונקציות חדשות לטיפול בחלון המורחב
 function openModal(url){
-    document.getElementById("fullScreenIframe").src = url;
-    document.getElementById("modalIframe").style.display = "flex";
+    document.getElementById("fullScreenIframe").src = url;
+    document.getElementById("modalIframe").style.display = "flex";
 }
 function closeModal(){
-    document.getElementById("fullScreenIframe").src = "about:blank"; // מנקה את הכתובת
-    document.getElementById("modalIframe").style.display = "none";
+    document.getElementById("fullScreenIframe").src = "about:blank"; // מנקה את הכתובת
+    document.getElementById("modalIframe").style.display = "none";
 }
 function getFavicon(url){try{return new URL(url).origin+"/favicon.ico";}catch(e){return"https://via.placeholder.com/32";}}
 function escapeHtml(str){if(str===undefined||str===null)return"";return String(str).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/'/g,"&#39;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
